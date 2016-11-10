@@ -1,0 +1,13 @@
+<ion-view view-title="Events">
+  <ion-content class="has-header">
+    <h1>Events</h1>
+    <ion-list >
+	  <ion-item ng-repeat="event in events" href="#/app/event-detail" class="item-icon-right">
+	    {{ event.name }}    
+	    
+	     <i class="icon ion-chevron-right"></i>
+	   
+	  </ion-item>
+	</ion-list>
+  </ion-content>
+</ion-view>

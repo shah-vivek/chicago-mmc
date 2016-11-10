@@ -1,0 +1,26 @@
+/* Empty. Add your own CSS if you like */
+.menu .scroll-content {
+	background-color: #e74c3c;
+}
+a.item.item-complex {
+	background-color: #e74c3c;
+}
+.menu-item .item-content {
+	background-color: #e74c3c;
+	color: #ecf0f1;
+	font-weight: 700;
+}
+.menu-item .item-content.activated {
+	background-color: #FFE082;
+	color: #e74c3c;
+}
+.active-menu {
+	border-right: 5px solid #e74c3c;
+}
+.active-menu .item-content {
+	background-color: #FFE082;
+	color: #e74c3c;
+}
+.pane{
+	background-color: #FFF8E1;
+}
