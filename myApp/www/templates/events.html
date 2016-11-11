@@ -1,13 +1,12 @@
-<ion-view view-title="Events">
-  <ion-content class="has-header">
-    <h1>Events</h1>
-    <ion-list >
-	  <ion-item ng-repeat="event in events" href="#/app/event-detail" class="item-icon-right">
-	    {{ event.name }}    
-	    
-	     <i class="icon ion-chevron-right"></i>
-	   
-	  </ion-item>
-	</ion-list>
-  </ion-content>
+<ion-view view-title={{viewTitle}}>
+        <ion-nav-buttons side="right">
+            <button class="button" ng-click="loadEvents()">Load Events</button>
+        </ion-nav-buttons>
+
+        <ion-content scroll="false" class="main-content">
+            <calendar ng-model="calendar.currentDate" calendar-mode="calendar.mode" event-source="calendar.eventSource"
+                      range-changed="reloadSource(startTime, endTime)"
+                      event-selected="onEventSelected(event)" title-changed="onViewTitleChanged(title)"
+                      time-selected="onTimeSelected(selectedTime, events)" step="30" showEventDetail=true></calendar>
+        </ion-content>
 </ion-view>

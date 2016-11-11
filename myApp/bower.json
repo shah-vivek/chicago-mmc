@@ -6,5 +6,9 @@
   },
   "dependencies": {
     "ion-gallery": "^0.1.14"
+  },
+  "resolutions": {
+    "angular-sanitize": "1.4.3",
+    "ionic": "~1.1.1"
   }
 }
