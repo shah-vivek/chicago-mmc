@@ -1,7 +1,11 @@
-angular.module('starter.controllers', [])
+angular.module('mmc.controllers', ['mmc.services'])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout,$state) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout, $state, Cart) {
 
+	$scope.numberOfItems = Cart.get().length;
+	$scope.$on('addedToCart', function(event, data) {
+		$scope.numberOfItems = Cart.get().length;
+	});
 })
 .controller('HomeCtrl', function($scope, $stateParams) {
 })
@@ -88,54 +92,14 @@ angular.module('starter.controllers', [])
 })
 .controller('GalleryCtrl', function($scope, $stateParams) {
 })
-.controller('TicketsCtrl', function($scope, $stateParams) {
+.controller('TicketsCtrl', function($scope, $stateParams , Product, Cart) {
 
-	$scope.products = [
-		{
-			productId: 1,
-			type: 'membership',
-			title: 'MMC Family Membership',
-			description: 'MMC Family Membership for Calendar Year 2016.',
-			validity: {
-				from: '01-01-2016',
-				to: '31-12-2016'
-			},
-			price: 30
-		},
-		{
-			productId: 2,
-			type: 'membership',
-			title: 'MMC Single Membership',
-			description: 'MMC Single Membership for Calendar Year 2016.',
-			validity: {
-				from: '01-01-2016',
-				to: '31-12-2016'
-			},
-			price: 15
-		},
-		{
-			productId: 3,
-			type: 'membership',
-			title: 'MMC Lifetime Membership',
-			description: 'MMC Lifetime Membership for Calendar Year 2016.',
-			validity: {
-				from: null,
-				to: null
-			},
-			price: 350
-		},
-		{
-			productId: 4,
-			type: 'event',
-			title: 'New Year Celebration',
-			description: 'MMC New Year Celebration 2017.',
-			validity: {
-				from: '01-01-2017',
-				to: '01-01-2017'
-			},
-			price: 30
-		}
-	];
+	$scope.products = Product.get();
+
+	$scope.addToCart = function(product) {
+		Cart.add(product);
+		$scope.$emit('addedToCart', true);
+	};
 })
 .controller('MembershipCtrl', function($scope, $stateParams) {
 })

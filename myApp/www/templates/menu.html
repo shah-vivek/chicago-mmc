@@ -4,10 +4,19 @@
       <ion-nav-back-button>
       </ion-nav-back-button>
 
+      <!--Slide menu toggle button-->
       <ion-nav-buttons side="left">
         <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
         </button>
       </ion-nav-buttons>
+
+      <!--Cart button-->
+      <ion-nav-buttons side="right">
+        <button class="button button-icon button-clear ion-ios-cart" menu-toggle="left">
+          {{ numberOfItems }}
+        </button>
+      </ion-nav-buttons>
+
     </ion-nav-bar>
     <ion-nav-view name="menuContent"></ion-nav-view>
   </ion-side-menu-content>

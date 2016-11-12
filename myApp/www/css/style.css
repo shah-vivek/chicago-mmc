@@ -1,4 +1,4 @@
-/* Empty. Add your own CSS if you like */
+/*----------------------------------------------------------- Slide -menu starts ------------------------------------------*/
 .menu .scroll-content {
 	background-color: #e74c3c;
 }
@@ -20,6 +20,36 @@ a.item.item-complex {
 .active-menu .item-content {
 	background-color: #FFE082;
 	color: #e74c3c;
+}
+/*--------------------------------------------------Buttons start---------------------------------------------------------*/
+.btn-add-right {
+	min-height: 30px;
+	line-height: 0;
+	float: right;
+	font-weight: bolder;
+}
+.btn-price {
+	min-height: 30px;
+	line-height: 0;
+	color: #e74c3c !important;
+	font-weight: bolder;
+}
+.btn-price[disabled] {
+	opacity: 1;
+}
+
+/*-----------------------------------------------Ticket card style start-----------------------------------------*/
+.ticket-title{
+	background-color: #e74c3c;
+	color: #FFE082;
+	font-weight: bolder;
+}
+.ticket-body {
+	background-color: rgba(241, 196, 15, 0.30);
+	font-weight: 500;
+}
+.ticket-footer {
+	background-color: rgba(241, 196, 15, 0.20);
 }
 .pane{
 	background-color: #FFF8E1;
