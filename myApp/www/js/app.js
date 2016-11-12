@@ -131,6 +131,14 @@ angular.module('starter', ['ionic', 'mmc.controllers', 'ui.rCalendar'])
         controller: 'CartCtrl'
       }
     }
+  }).state('app.checkout', {
+    url: '/checkout',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/checkout.html',
+        controller: 'CheckoutCtrl'
+      }
+    }
   });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/home');

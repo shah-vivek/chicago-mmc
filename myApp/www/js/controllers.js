@@ -137,4 +137,8 @@ angular.module('mmc.controllers', ['mmc.services'])
 		$scope.totalPrice = Cart.getTotalPrice();
 	};
 		
+})
+.controller('CheckoutCtrl', function($scope, $stateParams , $ionicSideMenuDelegate) {
+
+		$ionicSideMenuDelegate.canDragContent(false);
 });
