@@ -52,7 +52,7 @@ angular.module('starter', ['ionic', 'mmc.controllers', 'ui.rCalendar', 'ion-gall
       }
     })
   .state('app.event-detail', {
-      url: '/event-detail',
+      url: '/event-detail/:id',
       views: {
         'menuContent': {
           templateUrl: 'templates/event-detail.html'

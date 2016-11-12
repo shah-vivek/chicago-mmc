@@ -1,10 +1,19 @@
-<ion-view view-title={{viewTitle}}>
+<ion-view view-title='Events'>
         
 
-        <ion-content scroll="false" class="main-content">
+        <ion-content scroll="false" class="main-content" id="event">
+        	<div>
+        		<div class="button-bar">
+				  <button class="button button-energized icon icon-left ion-chevron-left" ng-click="changeDate(-1)">Previous</button>
+				  <button class="button button-energized">{{viewTitle}}</button>
+				  <button class="button button-energized icon icon-right ion-chevron-right" ng-click="changeDate(1)">Next</button>
+				</div>
+        	</div>
             <calendar ng-model="calendar.currentDate" calendar-mode="calendar.mode" event-source="calendar.eventSource"
                       range-changed="reloadSource(startTime, endTime)"
+                      format-month-title="MMM yyyy"
                       event-selected="onEventSelected(event)" title-changed="onViewTitleChanged(title)"
                       time-selected="onTimeSelected(selectedTime, events)" step="30" showEventDetail=true></calendar>
+
         </ion-content>
 </ion-view>

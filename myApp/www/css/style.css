@@ -54,3 +54,12 @@ a.item.item-complex {
 .pane{
 	background-color: #FFF8E1;
 }
+
+/*------------------------------------------------Event calendar-----------------------------------------------------*/
+#event .event-detail-container {
+	border-width: 0 0 0 0;
+}
+#event .event-detail-container > div:first-child {
+	-webkit-transform: translate3d(0px, 47px, 0px) scale(1) !important;
+	transform: translate3d(0px, 47px, 0px) scale(1) !important;
+}

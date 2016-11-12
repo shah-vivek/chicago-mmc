@@ -105,4 +105,27 @@ angular.module('mmc.services', [])
 			}
 		];
 	};
+})
+.service('Events', function(){
+	this.events = [
+			{
+				title: 'Event 1',
+				startTime : new Date(Date.UTC(2016, 10, 11)),
+				endTime: new Date(Date.UTC(2016, 10, 12)),
+				allDay : true,
+				id: 1
+			}
+	];
+
+	this.get = function( id ) {
+		if( id ) {
+			for( var i = 0 ; i < this.events.legth ; i++ ) {
+				if( id == this.events[i].id ) {
+					return this.events[i];
+				}
+			}
+		} else {
+			return this.events;
+		}
+	};
 });
