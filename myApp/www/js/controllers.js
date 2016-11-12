@@ -6,6 +6,9 @@ angular.module('mmc.controllers', ['mmc.services'])
 	$scope.$on('addedToCart', function(event, data) {
 		$scope.numberOfItems = Cart.get().length;
 	});
+	$scope.$on('deletedFromCart', function(event, data) {
+		$scope.numberOfItems = Cart.get().length;
+	});
 })
 .controller('HomeCtrl', function($scope, $stateParams) {
 })
@@ -105,7 +108,33 @@ angular.module('mmc.controllers', ['mmc.services'])
 })
 .controller('PlaylistCtrl', function($scope, $stateParams) {
 
-}).controller('LogInCtrl', function($scope, $stateParams , $ionicSideMenuDelegate) {
+})
+.controller('LogInCtrl', function($scope, $stateParams , $ionicSideMenuDelegate) {
 
 		$ionicSideMenuDelegate.canDragContent(false);
+})
+.controller('CartCtrl', function($scope, $stateParams, Cart ) {
+
+	$scope.items = Cart.get();
+	$scope.totalPrice = Cart.getTotalPrice();
+
+	$scope.delete = function( id ) {
+
+		Cart.remove(id);
+		$scope.totalPrice = Cart.getTotalPrice();
+		$scope.$emit('deletedFromCart', true);
+	};
+
+	$scope.decrease = function(id) {
+		Cart.addQty(id , -1);
+		$scope.items = Cart.get();
+		$scope.totalPrice = Cart.getTotalPrice();
+	};
+
+	$scope.increase = function(id) {
+		Cart.addQty(id , 1);
+		$scope.items = Cart.get();
+		$scope.totalPrice = Cart.getTotalPrice();
+	};
+		
 });

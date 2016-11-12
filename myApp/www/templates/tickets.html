@@ -1,4 +1,4 @@
-<ion-view>
+<ion-view view-title="Tickets">
 <ion-content scroll="true" class="main-content">
 	<div class="card ticket" ng-repeat="product in products">
 	  <div class="item item-divider ticket-title">
@@ -14,7 +14,7 @@
 	    <button class="button button-assertive btn-add-right ion-ios-cart" ng-click="addToCart( product );display = true;" ng-show="!display">
 		  Add
 		</button>
-		<button class="button button-assertive btn-add-right ion-ios-cart" ng-show="display">
+		<button class="button button-assertive btn-add-right ion-ios-cart" ng-show="display" ui-sref="app.cart">
 		  Go to Cart
 		</button>
 	  </div>

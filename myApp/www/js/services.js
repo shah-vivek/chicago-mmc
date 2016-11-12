@@ -8,7 +8,7 @@ angular.module('mmc.services', [])
 	this.add = function( product ) {
 
 		var product_model = {
-			id: product.id,
+			id: product.productId,
 			price: product.price,
 			title: product.title,
 			qty: 1
@@ -18,6 +18,39 @@ angular.module('mmc.services', [])
 
 	this.get = function() {
 		return this.cart;
+	};
+
+	this.remove = function(id) {
+		var index ;
+		for( var i=0 ; i < this.cart.length ; i++ ) {
+			if( this.cart[i].id == id ) {
+				index = i;
+				break;
+			}
+		}
+		this.cart.splice(index,1);
+	};
+
+	this.addQty = function( id , qty ) {
+		for( var i=0 ; i < this.cart.length ; i++ ) {
+			if( this.cart[i].id == id ) {
+
+				this.cart[i].qty = this.cart[i].qty + qty;
+				if( this.cart[i].qty == 0 ) {
+					this.remove( id );
+				}
+				break;
+			}
+		}
+	};
+
+	this.getTotalPrice = function() {
+
+		var totalPrice = 0;
+		for( var i = 0 ; i < this.cart.length ; i++ ) {
+			totalPrice = totalPrice + ( this.cart[i].qty * this.cart[i].price );
+		}
+		return totalPrice;
 	};
 	
 })

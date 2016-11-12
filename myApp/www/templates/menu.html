@@ -12,7 +12,7 @@
 
       <!--Cart button-->
       <ion-nav-buttons side="right">
-        <button class="button button-icon button-clear ion-ios-cart" menu-toggle="left">
+        <button class="button button-icon button-clear ion-ios-cart" ui-sref="app.cart" ng-disabled="!numberOfItems">
           {{ numberOfItems }}
         </button>
       </ion-nav-buttons>
