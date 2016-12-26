@@ -1,65 +1,44 @@
-/*----------------------------------------------------------- Slide -menu starts ------------------------------------------*/
-.menu .scroll-content {
-	background-color: #e74c3c;
-}
-a.item.item-complex {
-	background-color: #e74c3c;
-}
-.menu-item .item-content {
-	background-color: #e74c3c;
-	color: #ecf0f1;
-	font-weight: 700;
-}
-.menu-item .item-content.activated {
-	background-color: #FFE082;
-	color: #e74c3c;
-}
-.active-menu {
-	border-right: 5px solid #e74c3c;
-}
-.active-menu .item-content {
-	background-color: #FFE082;
-	color: #e74c3c;
-}
-/*--------------------------------------------------Buttons start---------------------------------------------------------*/
-.btn-add-right {
-	min-height: 30px;
-	line-height: 0;
-	float: right;
-	font-weight: bolder;
-}
-.btn-price {
-	min-height: 30px;
-	line-height: 0;
-	color: #e74c3c !important;
-	font-weight: bolder;
-}
-.btn-price[disabled] {
-	opacity: 1;
+/* General
+==================================*/
+:root {
+   --dark-primary-color: #FFA000;
+   --primary-color: #FFC107;
+   --light-primary-color: #FFECB3;
+   --text-primary-color : #212121;
+   --accent-color: #8BC34A;
+   --primary-text-color: #212121;
+   --secondary-text-color: #757575;
+   --divider-color: #BDBDBD;
 }
 
-/*-----------------------------------------------Ticket card style start-----------------------------------------*/
-.ticket-title{
-	background-color: #e74c3c;
-	color: #FFE082;
-	font-weight: bolder;
-}
-.ticket-body {
-	background-color: rgba(241, 196, 15, 0.30);
-	font-weight: 500;
-}
-.ticket-footer {
-	background-color: rgba(241, 196, 15, 0.20);
-}
-.pane{
-	background-color: #FFF8E1;
-}
 
-/*------------------------------------------------Event calendar-----------------------------------------------------*/
-#event .event-detail-container {
-	border-width: 0 0 0 0;
-}
-#event .event-detail-container > div:first-child {
-	-webkit-transform: translate3d(0px, 47px, 0px) scale(1) !important;
-	transform: translate3d(0px, 47px, 0px) scale(1) !important;
-}
+
+
+
+/* Menu
+==================================*/
+
+
+
+/* Login
+==================================*/
+
+
+/* Home
+==========================================*/
+ 
+
+/* Gallery
+========================================================================================
+*/
+
+
+/* Notifications
+============================================================================================
+*/
+
+
+/* Event
+=================================================================================================
+*/
+

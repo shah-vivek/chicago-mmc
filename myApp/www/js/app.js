@@ -4,142 +4,100 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'mmc.controllers', 'ui.rCalendar', 'ion-gallery'])
+angular.module('starter', ['ionic', 'starter.controllers', 'ionic-material', 'ionMdInput', 'ui.rCalendar' , 'mmc.services' , 'ion-gallery'])
 
 .run(function($ionicPlatform) {
-  $ionicPlatform.ready(function() {
-    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-    // for form inputs)
-    if (window.cordova && window.cordova.plugins.Keyboard) {
-      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-      cordova.plugins.Keyboard.disableScroll(true);
-
-    }
-    if (window.StatusBar) {
-      // org.apache.cordova.statusbar required
-      StatusBar.styleDefault();
-    }
-  });
+    $ionicPlatform.ready(function() {
+        // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
+        // for form inputs)
+        if (window.cordova && window.cordova.plugins.Keyboard) {
+            cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+        }
+        if (window.StatusBar) {
+            // org.apache.cordova.statusbar required
+            StatusBar.styleDefault();
+        }
+    });
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
-  $stateProvider
+.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+
+    // Turn off caching for demo simplicity's sake
+    $ionicConfigProvider.views.maxCache(0);
+
+    /*
+    // Turn off back button text
+    $ionicConfigProvider.backButton.previousTitleText(false);
+    */
+
+    $stateProvider.state('login', {
+        url: '/login',
+        templateUrl: 'templates/login.html',
+        controller: 'LoginCtrl'
+    })
+    .state('signup', {
+        url: '/login',
+        templateUrl: 'templates/sign-up.html',
+        controller: 'SignUpCtrl'
+    })
 
     .state('app', {
-    url: '/app',
-    abstract: true,
-    templateUrl: 'templates/menu.html',
-    controller: 'AppCtrl'
-  })
+        url: '/app',
+        abstract: true,
+        templateUrl: 'templates/menu.html',
+        controller: 'AppCtrl'
+    })
 
-  .state('app.home', {
-    url: '/home',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/home.html',
-        controller: 'HomeCtrl'
-      }
-    }
-  })
+    .state('app.home', {
+        url: '/home',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/home.html',
+                controller: 'HomeCtrl'
+            }
+        }
+    })
 
-  .state('app.events', {
-      url: '/events',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/events.html',
-          controller: 'EventsCtrl'
+    .state('app.notifications', {
+        url: '/notifications',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/notifications.html',
+                controller: 'NotificationsCtrl'
+            }
         }
-      }
     })
-  .state('app.event-detail', {
-      url: '/event-detail/:id',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/event-detail.html'
+
+    .state('app.album', {
+        url: '/album',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/album.html',
+                controller: 'AlbumCtrl'
+            }
         }
-      }
     })
-    .state('app.tickets', {
-      url: '/tickets',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/tickets.html',
-          controller: 'TicketsCtrl'
+
+    .state('app.gallery', {
+        url: '/gallery',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/gallery.html',
+                controller: 'GalleryCtrl'
+            }
         }
-      }
     })
-  .state('app.gallery', {
-    url: '/gallery',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/gallery.html',
-        controller: 'GalleryCtrl'
-      }
-    }
-  }).state('app.membership', {
-    url: '/membership',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/membership.html',
-        controller: 'MembershipCtrl'
-      }
-    }
-  }).state('app.notification', {
-    url: '/notification',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/notification.html',
-        controller: 'NotificationCtrl'
-      }
-    }
-  }).state('app.wallet', {
-    url: '/wallet',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/wallet.html',
-        controller: 'WalletCtrl'
-      }
-    }
-  }).state('app.about-us', {
-    url: '/about-us',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/about-us.html'
-      }
-    }
-  }).state('app.contact-us', {
-    url: '/contact-us',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/contact.html',
-        controller: 'ContactCtrl'
-      }
-    }
-  }).state('app.log-in', {
-    url: '/log-in',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/log-in.html',
-        controller: 'LogInCtrl'
-      }
-    }
-  }).state('app.cart', {
-    url: '/cart',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/cart.html',
-        controller: 'CartCtrl'
-      }
-    }
-  }).state('app.checkout', {
-    url: '/checkout',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/checkout.html',
-        controller: 'CheckoutCtrl'
-      }
-    }
-  });
-  // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/home');
+
+    .state('app.event', {
+        url: '/event',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/event.html',
+                controller: 'EventCtrl'
+            }
+        }
+    });
+
+    // if none of the above states are matched, use this as the fallback
+    $urlRouterProvider.otherwise('/login');
 });
