@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'ionic-material', 'ionMdInput', 'ui.rCalendar' , 'mmc.services' , 'ion-gallery'])
+angular.module('starter', ['ionic', 'starter.controllers', 'ionic-material', 'ionMdInput', 'ui.rCalendar' , 'mmc.services' , 'mmc.directives', 'ion-gallery'])
 
 .run(function($ionicPlatform) {
     $ionicPlatform.ready(function() {
@@ -94,6 +94,24 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-material', 'io
             'menuContent': {
                 templateUrl: 'templates/event.html',
                 controller: 'EventCtrl'
+            }
+        }
+    })
+    .state('app.contact', {
+        url: '/contact',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/contact-us.html',
+                controller: 'ContactCtrl'
+            }
+        }
+    })
+    .state('app.cart', {
+        url: '/cart',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/cart.html',
+                controller: 'CartCtrl'
             }
         }
     });

@@ -3,7 +3,7 @@
 
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $ionicPopover, $timeout) {
+.controller('AppCtrl', function($scope, $ionicModal, $ionicPopover, $timeout , Cart) {
     // Form data for the login modal
     $scope.loginData = {};
     $scope.isExpanded = false;
@@ -85,6 +85,16 @@ angular.module('starter.controllers', [])
             fabs[0].remove();
         }
     };
+
+    $scope.numberOfItems = 0;
+
+    $scope.$on('addedToCart', function(event, data) {
+      $scope.numberOfItems = Cart.get().length;
+    });
+
+    $scope.$on('deletedFromCart', function(event, data) {
+      $scope.numberOfItems = Cart.get().length;
+    });
 })
 
 .controller('LoginCtrl', function($scope, $timeout, $stateParams, ionicMaterialInk) {
@@ -95,11 +105,14 @@ angular.module('starter.controllers', [])
     
 })
 
-.controller('EventCtrl', function($scope, $timeout, $stateParams, ionicMaterialInk , Events) {
-    
+.controller('EventCtrl', function($scope, $timeout, $stateParams, $ionicLoading , ionicMaterialInk , ionicMaterialMotion , Events , Cart) {
+
     $scope.calendar = {};
     $scope.calendar.eventSource = Events.get();
-        
+        $ionicLoading.show({
+          template: 'Loading...',
+          duration: 3000
+        });
        
 
         $scope.onViewTitleChanged = function (title) {
@@ -122,6 +135,23 @@ angular.module('starter.controllers', [])
         $scope.changeDate = function(n) {
             $scope.$broadcast('changeDate' , n);
         };
+
+        $scope.onTimeSelected = function(selectedTime, events) {
+            console.log( "Event called" );
+            $scope.events = events;
+        };
+
+        $scope.addToCart = function( event ) {
+            event.added = true;
+            Cart.add( event  );
+            $scope.$emit('addedToCart', true);
+        };
+
+        $scope.remove = function( event ) {
+            event.added = false;
+            Cart.remove( event.id );
+            $scope.$emit('deletedFromCart', true);
+        };
 })
 
 .controller('NotificationsCtrl', function($scope, $stateParams, $timeout, ionicMaterialInk, ionicMaterialMotion) {
@@ -133,7 +163,7 @@ angular.module('starter.controllers', [])
     // Delay expansion
     $timeout(function() {
         $scope.isExpanded = true;
-        $scope.$parent.setExpanded(true);
+        $scope.$parent.setExpanded(false);
     }, 300);
 
     // Set Motion
@@ -173,7 +203,7 @@ angular.module('starter.controllers', [])
     $scope.$parent.showHeader();
     $scope.$parent.clearFabs();
     $scope.isExpanded = true;
-    $scope.$parent.setExpanded(true);
+    $scope.$parent.setExpanded(false);
     $scope.$parent.setHeaderFab(false);
 
     // Activate ink for controller
@@ -192,47 +222,39 @@ angular.module('starter.controllers', [])
 
     $scope.items = [
     {
-      src:'http://www.wired.com/images_blogs/rawfile/2013/11/offset_WaterHouseMarineImages_62652-2-660x440.jpg',
-      sub: 'This is a <b>subtitle</b>'
+      src:'http://www.mahamandalchicago.org/wp-content/gallery/gudhipadwa_2016/DSC_0065.JPG'
     },
     {
-      src:'http://www.gettyimages.co.uk/CMS/StaticContent/1391099215267_hero2.jpg',
-      sub: '' /* Not showed */
+      src:'http://www.mahamandalchicago.org/wp-content/gallery/gudhipadwa_2016/DSC_0067.JPG'
     },
     {
-      src:'http://www.hdwallpapersimages.com/wp-content/uploads/2014/01/Winter-Tiger-Wild-Cat-Images.jpg',
-      thumb:'http://www.gettyimages.co.uk/CMS/StaticContent/1391099215267_hero2.jpg'
+      src:'http://www.mahamandalchicago.org/wp-content/gallery/gudhipadwa_2016/DSC_0066.JPG'
     },
     {
-      src:'http://www.wired.com/images_blogs/rawfile/2013/11/offset_WaterHouseMarineImages_62652-2-660x440.jpg',
-      sub: 'This is a <b>subtitle</b>'
+      src:'http://www.mahamandalchicago.org/wp-content/gallery/gudhipadwa_2016/DSC_0068.JPG'
     },
     {
-      src:'http://www.gettyimages.co.uk/CMS/StaticContent/1391099215267_hero2.jpg',
-      sub: '' /* Not showed */
+      src:'http://www.mahamandalchicago.org/wp-content/gallery/gudhipadwa_2016/DSC_0069.JPG'
     },
     {
-      src:'http://www.hdwallpapersimages.com/wp-content/uploads/2014/01/Winter-Tiger-Wild-Cat-Images.jpg',
-      thumb:'http://www.gettyimages.co.uk/CMS/StaticContent/1391099215267_hero2.jpg'
+      src:'http://www.mahamandalchicago.org/wp-content/gallery/gudhipadwa_2016/DSC_0084.JPG'
     }
   ];
 
-    $scope.$parent.showHeader();
-    $scope.$parent.clearFabs();
-    $scope.isExpanded = true;
-    $scope.$parent.setExpanded(true);
-    $scope.$parent.setHeaderFab(false);
+  
+})
 
-    // Activate ink for controller
-    ionicMaterialInk.displayEffect();
+.controller('ContactCtrl', function($scope, $stateParams, $timeout, ionicMaterialInk, ionicMaterialMotion) {
 
-    ionicMaterialMotion.pushDown({
-        selector: '.push-down'
-    });
-    ionicMaterialMotion.fadeSlideInRight({
-        selector: '.animate-fade-slide-in .item'
-    });
+   
+  
 
+})
+
+.controller('CartCtrl', function($scope, $stateParams, $timeout, ionicMaterialInk, ionicMaterialMotion , Cart) {
+
+   $scope.items = Cart.get();
+   
 })
 
 ;

@@ -15,6 +15,41 @@ $assertive:                       #ef473a !default;
 $royal:                           #886aea !default;
 $dark:                            #444 !default;
 */
+.stepper {
+  display: inline-block;
+  color: black; }
+
+.stepper__wrapper {
+  display: flex; }
+
+.stepper__text {
+  width: 30px;
+  text-align: center;
+  background: none;
+  border: 0;
+  outline: none;
+  color: black;
+  vertical-align: top !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  height: 28px !important;
+  display: inline-block !important;
+  line-height: 0 !important; }
+
+.stepper__submit {
+  border: 0;
+  outline: none;
+  background-color: white;
+  cursor: pointer;
+  font-weight: bold;
+  width: 28px;
+  height: 28px;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  display: inline-block;
+  border: 1px solid black;
+  border-radius: 28px; }
+
 /*!
   Ionicons, v2.0.1
   Created by Ben Sperry for the Ionic Framework, http://ionicons.com/
@@ -8988,13 +9023,35 @@ p {
   height: 100%; }
 
 .button-accent {
-  background: #8BC34A; }
+  background: #8BC34A;
+  color: white; }
+
+.button-red {
+  background: #B71C1C;
+  color: white; }
+
+.button-add {
+  color: #4A148C;
+  background: white;
+  border: 1px solid #4A148C !important;
+  border-radius: 20px !important; }
+  .button-add:hover {
+    background: #4A148C;
+    color: white; }
 
 .bar-primary {
   background-color: #FFC107; }
 
 .bar-accent {
   background-color: #8BC34A; }
+
+.clearfix:before,
+.clearfix:after {
+  content: ' ';
+  display: table; }
+
+.clearfix:after {
+  clear: both; }
 
 .menu .bar.bar-header.expanded {
   transition: all .5s ease-in-out; }
@@ -9144,12 +9201,71 @@ p {
 #event .event-detail-container {
   border-width: 0 0 0 0; }
 
-#event .event-detail-container > div:first-child {
-  -webkit-transform: translate3d(0px, 47px, 0px) scale(1) !important;
-  transform: translate3d(0px, 47px, 0px) scale(1) !important; }
+#event .event-detail-container {
+  display: none; }
+
+#event .event-detail-container-custom {
+  position: absolute;
+  top: 300px;
+  width: 100%; }
+  #event .event-detail-container-custom .list {
+    padding: 10px; }
+  #event .event-detail-container-custom .item {
+    border-bottom: 1px solid #BDBDBD; }
+  #event .event-detail-container-custom .btn-row {
+    text-align: right; }
+    #event .event-detail-container-custom .btn-row .button {
+      min-height: 30px;
+      line-height: 30px; }
 
 #event .button-bar > .button .icon:before, .button-bar > .button:before {
   line-height: inherit !important; }
 
 #event .calendar-event-inner, #event .monthview-primary-with-event {
   background-color: #FFA000; }
+
+#contact .scroll-content {
+  display: table !important;
+  width: 100% !important;
+  height: 100% !important; }
+
+#contact form {
+  display: table-cell;
+  vertical-align: middle; }
+  #contact form .form-body {
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.23), 0 3px 10px rgba(0, 0, 0, 0.16);
+    vertical-align: middle; }
+
+#contact .item-input {
+  border-bottom: 1px solid #BDBDBD;
+  margin-bottom: 10px; }
+
+#contact textarea {
+  height: 100px; }
+
+#cart .item__last-row {
+  display: flex;
+  display: -webkit-flex; }
+  #cart .item__last-row .item__price, #cart .item__last-row .item__op {
+    display: inline-block; }
+  #cart .item__last-row .del {
+    background: none;
+    border: 1px solid black;
+    height: 28px;
+    line-height: -3px;
+    border-radius: 28px;
+    width: 28px;
+    margin-left: 15px; }
+
+#cart .cart-item {
+  padding: 5px;
+  border-bottom: 1px solid #BDBDBD; }
+
+#cart .item__last-row {
+  position: relative; }
+  #cart .item__last-row .item__op {
+    width: 70%;
+    text-align: right; }
+  #cart .item__last-row .item__price {
+    width: 30%;
+    text-align: left; }

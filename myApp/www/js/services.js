@@ -8,7 +8,7 @@ angular.module('mmc.services', [])
 	this.add = function( product ) {
 
 		var product_model = {
-			id: product.productId,
+			id: product.id,
 			price: product.price,
 			title: product.title,
 			qty: 1
@@ -51,6 +51,15 @@ angular.module('mmc.services', [])
 			totalPrice = totalPrice + ( this.cart[i].qty * this.cart[i].price );
 		}
 		return totalPrice;
+	};
+
+	this.find = function( id ) {
+		for( var i=0 ; i < this.cart.length ; i++ ) {
+			if( this.cart[i].id == id ) {
+				return true;
+			}
+		}
+		return false;
 	};
 	
 })
@@ -110,10 +119,44 @@ angular.module('mmc.services', [])
 	this.events = [
 			{
 				title: 'Event 1',
-				startTime : new Date(Date.UTC(2016, 10, 11)),
-				endTime: new Date(Date.UTC(2016, 10, 12)),
-				allDay : true,
-				id: 1
+				startTime : new Date(Date.UTC(2016, 11, 26)),
+				endTime: new Date(Date.UTC(2016, 11, 27 , 23 , 59 , 59)),
+				id: 'event-1',
+				allDay: false,
+				description: 'This is event1.',
+				venue: 'x , xyz , state , country , pincode',
+				price: 30
+			},
+			{
+				title: 'Event 2',
+				startTime : new Date(Date.UTC(2016, 11, 27)),
+				endTime: new Date(Date.UTC(2016, 11, 28 )),
+				id: 'event-2',
+				allDay: false,
+				description: 'This is event2.',
+				venue: 'x , xyz , state , country , pincode',
+				price: 40
+			},
+			{
+				title: 'Event 3',
+				startTime : new Date(Date.UTC(2016, 11, 27)),
+				endTime: new Date(Date.UTC(2016, 11, 29 , 23 , 59 , 59)),
+				id: 'event-3',
+				allDay: false,
+				description: 'This is event3.',
+				venue: 'x , xyz , state , country , pincode',
+				price: 50
+			},
+			{
+				title: 'Event 4',
+				startTime : new Date(Date.UTC(2016, 11, 28)),
+				endTime: new Date(Date.UTC(2016, 11, 29)),
+				id: 'event-4',
+				allDay: false,
+				description: 'This is event4.',
+				venue: 'x , xyz , state , country , pincode',
+				price: 20
+
 			}
 	];
 

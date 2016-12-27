@@ -1,0 +1,24 @@
+<ion-view title="Cart" id="cart">
+    <ion-content padding="'true'" class="has-header">
+		<div ng-repeat="item in items" class="list">
+			<div class="cart-item" >
+				<p><h3>{{ ::item.title }}</h3></p>
+				<div class="item__last-row">
+					<div class="item__price"><b>$ {{ item.qty*item.price }}</b></div>
+					<div class="item__op">
+						<numeric-stepper value="item.qty"></numeric-stepper>
+						<button class="del ion-trash-a" ng-click="remove()"></button>
+					</div>
+				</div>
+			</div>
+		</div>
+    </ion-content>
+    <ion-footer-bar align-title="left" class="bar-energized">
+     	<button class="button button-large button-energized" >
+     		&dollar; {{ totalPrice }}
+     	</button>
+    	<button class="button button-large button-royal ion-chevron-right icon-right" ui-sref="app.checkout">
+		 Checkout
+		</button>
+    </ion-footer-bar>
+</ion-view>

@@ -1,0 +1,7 @@
+<div class="stepper">
+	<div class="stepper__wrapper">
+		<button ng-click="decrease()"  class="stepper__submit stepper__submit-minus ion-minus" ng-disabled="!canDecrease && isRangeDisabled" ></button>
+		<input type="tel" ng-model="value" ng-disabled="isDisabled" only-digits class="stepper__text" />
+		<button ng-click="increase()"  class="stepper__submit stepper__submit-plus ion-plus" ng-disabled="!canIncrease && isRangeDisabled" ></button>
+	</div>
+</div>
