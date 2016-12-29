@@ -1,0 +1,63 @@
+/* Utilities
+==================================*/
+h1 {
+    color: #fff;
+    text-shadow: 0 1px 0px #000;
+    font-size: 42px;
+}
+
+.bar .title {
+    color: white;
+}
+.title-bordered {
+    border-top: solid 2px #bbb;
+    padding-top: 30px;
+}
+
+p {
+    color: #555;
+    margin: 0 0 25px;
+}
+
+.scroll {
+    height: 100%;
+}
+
+.button-accent {
+    background: $accent-color;
+    color: white;
+}
+.button-red {
+    background: $red;
+    color: white;
+}
+.button-add {
+        color: $purple;
+        background: white;
+        border: 1px solid $purple !important;
+        border-radius: 20px !important;
+    &:hover {
+        background: $purple;
+        color: white;
+    }
+}
+
+.bar-primary {
+    background-color: $primary-color;
+}
+.bar-accent {
+    background-color: $accent-color;
+}
+.button-purple {
+    background-color: $purple;
+    color: white;
+}
+
+.clearfix:before,
+.clearfix:after {
+    content: ' ';
+    display: table;
+}
+.clearfix:after {
+    clear: both;
+}

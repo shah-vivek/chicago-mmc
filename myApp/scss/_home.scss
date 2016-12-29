@@ -1,0 +1,54 @@
+#home .hero>.content {
+    top: 60px;
+}
+#home .hero>.content p {
+    color: white;
+    font-size: large;
+    text-align: center;
+}
+#home .tabs {
+    color: white;
+    background-color: white;
+}
+#home .article-btn {
+    position: absolute;
+    cursor: pointer;
+    box-shadow: 0 3px 10px rgba(0,0,0,.23), 0 3px 10px rgba(0,0,0,.16);
+    outline: 0!important;
+    color: #fff;
+    border-radius: 100%;
+    font-size: 26px;
+    -webkit-transition: background-color .1s linear;
+    transition: background-color .1s linear;
+    height: 56px;
+    line-height: 26px;
+    width: 56px;
+    text-align: center;
+    padding: 15px;
+    top: -28px;
+    font-family: Material-Design-Icons;
+    -webkit-transition: all .2s ease;
+    transition: all .2s ease;
+}
+#home .article-btn:hover {
+    -webkit-transform: scale(1.2) rotate(90deg);
+    transform: scale(1.2) rotate(360deg);
+}
+#home .active {
+    border: hidden;
+}
+#home .home-article {
+    max-width: 95%;
+    margin: 0 auto;
+    box-shadow: 0 3px 10px rgba(0,0,0,.23), 0 3px 10px rgba(0,0,0,.16);
+    padding: 5px;
+}
+#home #home-article-btn1 {
+    left: 25%;
+} 
+#home #home-article-btn2 {
+    left: 50%;
+} 
+#home #home-article-btn3 {
+    left: 75%;
+} 

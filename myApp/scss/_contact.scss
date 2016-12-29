@@ -1,0 +1,22 @@
+#contact {
+	.scroll-content {
+		display: table !important;
+	    width: 100% !important;
+	    height: 100% !important;
+	}
+	form {
+		display: table-cell;
+    	vertical-align: middle;
+    	.form-body {
+			box-shadow: 0 3px 10px rgba(0,0,0,.23), 0 3px 10px rgba(0,0,0,.16);
+			vertical-align: middle;
+		}
+	}
+	.item-input {
+		border-bottom: 1px solid $divider-color;
+		margin-bottom: 10px;
+	}
+	textarea {
+		height: 100px;
+	}
+}

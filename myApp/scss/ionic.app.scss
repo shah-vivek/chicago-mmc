@@ -18,6 +18,33 @@ $dark:                            #444 !default;
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
 
+@import "numericStepper";   
+
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
+
+
+@import "variable";
+
+@import "utilities";
+
+@import "menu";
+
+@import "login";
+
+@import "home";
+
+@import "notifications";
+
+@import "gallery";
+
+@import "event";
+
+@import "contact"; 
+  
+@import "cart";
+
+        
+
+
 

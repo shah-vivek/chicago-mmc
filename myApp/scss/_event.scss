@@ -1,0 +1,30 @@
+#event .event-detail-container {
+    border-width: 0 0 0 0;
+}
+#event .event-detail-container {
+	display: none;
+}
+#event .event-detail-container-custom  {
+	position: absolute;
+	top: 300px;
+	width: 100%;
+	.list {
+		padding: 10px;
+	}
+	.item {
+		border-bottom: 1px solid $divider-color;
+	}
+	.btn-row {
+		text-align: right;
+		.button {
+			min-height: 30px;
+    		line-height: 30px;
+		}
+	}
+}
+#event .button-bar>.button .icon:before, .button-bar>.button:before {
+    line-height: inherit !important;
+}
+#event .calendar-event-inner, #event .monthview-primary-with-event {
+    background-color: $dark-primary-color;
+}

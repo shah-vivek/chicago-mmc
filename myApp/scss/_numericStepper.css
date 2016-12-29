@@ -1,0 +1,41 @@
+.stepper {
+	display: inline-block;
+	color: black;
+}
+.stepper__wrapper {
+	display: flex;
+}
+.stepper__text {
+	width: 30px;
+	text-align: center;
+	background: none;
+	border: 0;
+	outline: none;
+	color: black;
+	vertical-align: top !important;
+	padding-top: 0 !important;
+	padding-bottom: 0 !important;
+	height: 28px !important;
+	display: inline-block !important;
+	line-height: 0 !important;
+}
+.stepper__submit {
+	border: 0;
+	outline: none;
+	background-color: white;
+	cursor: pointer;
+	font-weight: bold;
+	width: 28px;
+	height: 28px;
+	background-repeat: no-repeat;
+	background-position: 50%;
+	display: inline-block;
+	border: 1px solid black;
+	border-radius: 28px;
+}
+.stepper__submit-minus {
+	
+}
+.stepper__submit-plus {
+	
+}

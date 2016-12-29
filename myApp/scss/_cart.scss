@@ -1,0 +1,34 @@
+#cart {
+	.item__last-row {
+		display: flex;
+		display: -webkit-flex; 
+		.item__price , .item__op {
+			display: inline-block;
+		}
+		.del {
+			    background: none;
+			    border: 1px solid black;
+			    height: 28px;
+			    line-height: -3px;
+			    border-radius: 28px;
+			    width: 28px;
+			    margin-left: 15px;
+
+		}
+	}
+	.cart-item {
+		padding: 5px;
+		border-bottom: 1px solid $divider-color;
+	}
+	.item__last-row {
+		position: relative;
+		.item__op {
+			width: 70%;
+			text-align: right;
+		}
+		.item__price {
+			width: 30%;
+			text-align: left;
+		}
+	}
+}
