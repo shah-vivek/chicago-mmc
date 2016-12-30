@@ -176,7 +176,7 @@ angular.module('starter.controllers', [])
     
 })
 
-.controller('EventCtrl', function($scope, $timeout, $stateParams, $location , $ionicLoading , ionicMaterialInk , ionicMaterialMotion , Events , Cart) {
+.controller('EventCtrl', function($scope, $timeout, $stateParams,$state , $location , $ionicLoading , ionicMaterialInk , ionicMaterialMotion , Events , Cart) {
 
     $scope.calendar = {};
     $scope.calendar.eventSource = Events.get();
@@ -209,7 +209,7 @@ angular.module('starter.controllers', [])
 
         $scope.onEventSelected = function( event ) {
             Events.selectedEvent = event;
-            $location.path('/app/event-detail');
+            $state.go('app.event-details');
         };
 
         $scope.onTimeSelected = function(selectedTime, events) {
@@ -232,28 +232,6 @@ angular.module('starter.controllers', [])
 
 
 .controller('EventDetailCtrl', function($scope, $stateParams,  $timeout, ionicMaterialMotion, ionicMaterialInk , Events) {
-    // Set Header
-    $scope.$parent.showHeader();
-    $scope.$parent.clearFabs();
-    $scope.isExpanded = false;
-    $scope.$parent.setExpanded(false);
-    $scope.$parent.setHeaderFab(false);
-
-    // Set Motion
-    $timeout(function() {
-        ionicMaterialMotion.slideUp({
-            selector: '.slide-up'
-        });
-    }, 300);
-
-    $timeout(function() {
-        ionicMaterialMotion.fadeSlideInRight({
-            startVelocity: 3000
-        });
-    }, 700);
-
-    // Set Ink
-    ionicMaterialInk.displayEffect();
 
     $scope.event = Events.selectedEvent;
 
