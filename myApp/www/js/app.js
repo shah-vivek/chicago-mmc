@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'ionic-material', 'ionMdInput', 'ui.rCalendar' , 'mmc.services' , 'mmc.directives', 'ion-gallery'])
+angular.module('starter', ['ionic', 'starter.controllers', 'ionic-material', 'ionic-sidemenu' , 'ionMdInput', 'ui.rCalendar' , 'mmc.services' , 'mmc.directives', 'ion-gallery'])
 
 .run(function($ionicPlatform) {
     $ionicPlatform.ready(function() {
@@ -58,6 +58,36 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-material', 'io
         }
     })
 
+    .state('app.mmc', {
+        url: '/mmc',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/mmc.html',
+                controller: 'MmcCtrl'
+            }
+        }
+    })
+
+    .state('app.president', {
+        url: '/president',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/president.html',
+                controller: 'PresidentCtrl'
+            }
+        }
+    })
+
+    .state('app.committee', {
+        url: '/committee',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/committee.html',
+                controller: 'CommitteeCtrl'
+            }
+        }
+    })
+
     .state('app.notifications', {
         url: '/notifications',
         views: {
@@ -97,6 +127,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-material', 'io
             }
         }
     })
+
+    .state('app.event-details', {
+        url: '/event-detail',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/eventTemplate.html',
+                controller: 'EventDetailCtrl'
+            }
+        }
+    })
+
     .state('app.contact', {
         url: '/contact',
         views: {

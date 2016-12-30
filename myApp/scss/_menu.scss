@@ -1,5 +1,5 @@
 .menu .bar.bar-header.expanded {
-    transition: all .5s ease-in-out;
+    transition: all 0s ease-in-out;
 }
 
 .menu-open .bar.bar-header.expanded {
@@ -36,9 +36,17 @@
 .menu .scroll {
     background-color: white;
 }
-.menu .list {
-    padding: 10px;
-}
 .menu .list .item {
     border-bottom: 1px solid $divider-color;
 }
+.menu .list {
+    padding: 10px;
+    i {
+        float: right;
+    }
+    .sidemenu-subitem-1 {
+        padding-left: 20px;
+        background-color: #f2f2f3;
+    }
+}
+

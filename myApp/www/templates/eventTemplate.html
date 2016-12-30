@@ -1,14 +1,43 @@
-<ion-content class="event-detail-container" has-bouncing="false" ng-show="showEventDetail" overflow-scroll="false">
-    <table class="table table-bordered table-striped table-fixed event-detail-table">
-        <tr ng-repeat="event in selectedDate.events" ng-click="eventSelected({event:event})">
-            <td ng-if="!event.allDay" class="monthview-eventdetail-timecolumn">{{::event.startTime|date: 'date:'yyyy-MM-dd HH:mm'}}
-                dasdasd
-                {{::event.endTime|date: 'yyyy-MM-dd HH:mm'}}
-            </td>
-            <td class="event-detail">{{::event.title}}</td>
-        </tr>
-        <tr ng-if="!selectedDate.events">
-            <td class="no-event-label" ng-bind="::noEventsLabel"></td>
-        </tr>
-    </table>
-</ion-content>
+<ion-view view-title="Event" id="event">
+    <ion-content ng-class="{expanded:$scope.isExpanded}">
+        <div class="hero slide-up" style="background-image: url('img/banner.jpg');">
+        </div>
+        <div class="event-card">
+            <h2 class="event-title">{{ event.title }}</h2>
+
+            <p class="event-description">{{ event.description }}</p>
+
+            <p class="event-time">
+                <div class="calendar">
+                    <div class="date-col"> 
+                        <div class="year-row">{{ event.startTime | date: 'yyyy'}}</div>
+                        <div class="date-row">{{ event.startTime | date: 'dd'}}</div>
+                        <div class="month-row">{{ event.startTime | date: 'MMM'}}</div>
+                        <div class="time-row">{{ event.startTime | date: 'HH : mm'}}</div>
+                    </div>
+                </div>
+                <span><i>to</i></span>
+                <div class="calendar">
+                    <div class="date-col"> 
+                        <div class="year-row">{{ event.endTime | date: 'yyyy'}}</div>
+                        <div class="date-row">{{ event.endTime | date: 'dd'}}</div>
+                        <div class="month-row">{{ event.endTime | date: 'MMM'}}</div>
+                        <div class="time-row">{{ event.endTime | date: 'HH : mm'}}</div>
+                    </div>
+                </div>
+            </p>
+            <p class="event-venue">
+                <span class="ion-location"></span> <span>{{ event.venue }}</span>
+            </p>
+
+            <p class="button-para">
+               <a class="button button-purple button-round" href="#" ng-click="window.open('http://shop.mahamandalchicago.org/main.sc' , '_blank');">
+                    Buy
+                </a>
+            </p>   
+        </div>
+        <div id="map">
+               
+            </div> 
+    </ion-content>
+</ion-view>

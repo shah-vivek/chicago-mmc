@@ -10,25 +10,7 @@
             <calendar ng-model="calendar.currentDate" calendar-mode="calendar.mode" event-source="calendar.eventSource"
                       format-month-title="MMM yyyy"
                       event-selected="onEventSelected(event)" title-changed="onViewTitleChanged(title)"
-                      time-selected="onTimeSelected(selectedTime, events)" step="30" showEventDetail=false
+                      time-selected="onTimeSelected(selectedTime, events)" step="30" 
                       ></calendar>
-
-          <div class="event-detail-container-custom" >
-            <div class="list">
-                  <div class="item" ng-repeat="event in events">
-                      <h2>{{ ::event.title }}</h2>
-                      <p>{{ ::event.description }}</p>
-                      <p><span>Cost :</span><span>{{ ::event.price }}</span></p>
-                      <p class="btn-row">
-                        <button class="button  button-add" ng-click="addToCart(event)">
-                          Add
-                        </button>
-                      </p>
-                  </div>
-                  <div class="item" ng-if="!events">
-                    <h3> No Events on this date </h3>
-                  </div> 
-              </div>
-            </div>
         </ion-content>
 </ion-view>

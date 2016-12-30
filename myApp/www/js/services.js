@@ -123,7 +123,7 @@ angular.module('mmc.services', [])
 				endTime: new Date(Date.UTC(2016, 11, 27 , 23 , 59 , 59)),
 				id: 'event-1',
 				allDay: false,
-				description: 'This is event1.',
+				description: 'This is event1.It will be a paragraph text. It will have atlest two tot three lines.',
 				venue: 'x , xyz , state , country , pincode',
 				price: 30
 			},
@@ -133,7 +133,7 @@ angular.module('mmc.services', [])
 				endTime: new Date(Date.UTC(2016, 11, 28 )),
 				id: 'event-2',
 				allDay: false,
-				description: 'This is event2.',
+				description: 'This is event2.It will be a paragraph text. It will have atlest two tot three lines.',
 				venue: 'x , xyz , state , country , pincode',
 				price: 40
 			},
@@ -143,7 +143,7 @@ angular.module('mmc.services', [])
 				endTime: new Date(Date.UTC(2016, 11, 29 , 23 , 59 , 59)),
 				id: 'event-3',
 				allDay: false,
-				description: 'This is event3.',
+				description: 'This is event3.It will be a paragraph text. It will have atlest two tot three lines.',
 				venue: 'x , xyz , state , country , pincode',
 				price: 50
 			},
@@ -153,7 +153,7 @@ angular.module('mmc.services', [])
 				endTime: new Date(Date.UTC(2016, 11, 29)),
 				id: 'event-4',
 				allDay: false,
-				description: 'This is event4.',
+				description: 'This is event4.It will be a paragraph text. It will have atlest two tot three lines.',
 				venue: 'x , xyz , state , country , pincode',
 				price: 20
 
@@ -171,4 +171,6 @@ angular.module('mmc.services', [])
 			return this.events;
 		}
 	};
+
+	this.selectedEvent = null;
 });

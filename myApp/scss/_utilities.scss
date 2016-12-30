@@ -22,7 +22,6 @@ p {
 .scroll {
     height: 100%;
 }
-
 .button-accent {
     background: $accent-color;
     color: white;
@@ -41,7 +40,9 @@ p {
         color: white;
     }
 }
-
+.button-round {
+    border-radius: 25px !important;
+}
 .bar-primary {
     background-color: $primary-color;
 }

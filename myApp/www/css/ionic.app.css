@@ -9039,11 +9039,18 @@ p {
     background: #4A148C;
     color: white; }
 
+.button-round {
+  border-radius: 25px !important; }
+
 .bar-primary {
-  background-color: #FFC107; }
+  background-color: #F09819; }
 
 .bar-accent {
   background-color: #8BC34A; }
+
+.button-purple {
+  background-color: #4A148C;
+  color: white; }
 
 .clearfix:before,
 .clearfix:after {
@@ -9054,11 +9061,11 @@ p {
   clear: both; }
 
 .menu .bar.bar-header.expanded {
-  transition: all .5s ease-in-out; }
+  transition: all 0s ease-in-out; }
 
 .menu-open .bar.bar-header.expanded {
-  background-color: #FFA000;
-  background-image: linear-gradient(#FFA000, #FFC107 50%); }
+  background-color: #FF512F;
+  background-image: -webkit-linear-gradient(#FF512F, #F09819); }
 
 .menu h2 {
   bottom: 0;
@@ -9084,11 +9091,16 @@ p {
 .menu .scroll {
   background-color: white; }
 
-.menu .list {
-  padding: 10px; }
-
 .menu .list .item {
   border-bottom: 1px solid #BDBDBD; }
+
+.menu .list {
+  padding: 10px; }
+  .menu .list i {
+    float: right; }
+  .menu .list .sidemenu-subitem-1 {
+    padding-left: 20px;
+    background-color: #f2f2f3; }
 
 #login {
   /* background: #1c2627 url("../img/banner.jpg") no-repeat center center;*/
@@ -9096,30 +9108,51 @@ p {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  background-color: #FFC107; }
+  background-color: #F09819;
+  background: -webkit-linear-gradient(#FF512F, #F09819); }
   #login .item-md-label .input-label {
+    color: white;
+    opacity: 0.5; }
+  #login .item-md-label input {
+    background: none;
+    border-bottom: #FF512F;
+    font-size: 25px;
+    letter-spacing: 0; }
+    #login .item-md-label input:focus {
+      outline: none; }
+  #login .item-md-label input.used ~ .input-label, #login .item-md-label input:focus ~ .input-label {
+    opacity: 0.8;
     color: white; }
-
-#login .scroll-content {
-  display: table !important;
-  width: 100% !important;
-  height: 100% !important; }
-
-#login form {
-  display: table-cell;
-  vertical-align: middle; }
-
-#login .header {
-  padding-bottom: 20px; }
-
-#login img {
-  display: block;
-  width: 80%;
-  margin: 0 auto; }
-
-#login .button.button-light.active, .button.button-light.activated {
-  color: #fff;
-  opacity: inherit; }
+  #login .item-md-label .hightlight-calm {
+    background: none; }
+  #login .list > .item {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.8); }
+  #login .scroll-content {
+    display: table !important;
+    width: 100% !important;
+    height: 100% !important; }
+  #login form {
+    display: table-cell;
+    vertical-align: middle; }
+    #login form .form-header {
+      text-align: center; }
+      #login form .form-header .logo {
+        width: 30%; }
+      #login form .form-header h1, #login form .form-header h2 {
+        margin-top: 0;
+        background: -webkit-linear-gradient(#F09819, #FF512F);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: #F09819;
+        text-shadow: 0 1px 1px #FF512F; }
+      #login form .form-header h1 {
+        margin-bottom: 0; }
+  #login .header {
+    padding-bottom: 20px; }
+  #login .button {
+    border-radius: 25px; }
+  #login .button.button-light.active, #login .button.button-light.activated {
+    color: #fff;
+    opacity: inherit; }
 
 #home .hero > .content {
   top: 60px; }
@@ -9165,6 +9198,8 @@ p {
   margin: 0 auto;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.23), 0 3px 10px rgba(0, 0, 0, 0.16);
   padding: 5px; }
+  #home .home-article .button-para {
+    text-align: right; }
 
 #home #home-article-btn1 {
   left: 25%; }
@@ -9200,9 +9235,21 @@ p {
 
 #event .event-detail-container {
   border-width: 0 0 0 0; }
+  #event .event-detail-container tr {
+    border: 2px solid white; }
+
+#event .monthview-primary-with-event {
+  background-color: #F09819; }
+
+#event .monthview-current {
+  background-color: #FF512F;
+  opacity: 0.8; }
+
+#event .monthview-selected {
+  background-color: #FF512F; }
 
 #event .event-detail-container {
-  display: none; }
+  margin-top: 310px; }
 
 #event .event-detail-container-custom {
   position: absolute;
@@ -9221,8 +9268,54 @@ p {
 #event .button-bar > .button .icon:before, .button-bar > .button:before {
   line-height: inherit !important; }
 
-#event .calendar-event-inner, #event .monthview-primary-with-event {
-  background-color: #FFA000; }
+#event .hero {
+  height: 25%; }
+
+#event .event-card {
+  margin: 0 auto;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.23), 0 3px 10px rgba(0, 0, 0, 0.16);
+  padding: 15px; }
+  #event .event-card .event-title {
+    color: #212121; }
+  #event .event-card .event-description {
+    font-style: italic; }
+  #event .event-card .ion-location {
+    font-size: 30px; }
+
+#event .calendar {
+  position: relative;
+  display: inline-block;
+  padding: 10px;
+  background-color: #8BC34A; }
+  #event .calendar .date-col {
+    display: inline-block; }
+  #event .calendar .year-row {
+    text-align: center;
+    font-size: 20px; }
+  #event .calendar .month-row {
+    text-align: center;
+    font-size: 20px; }
+  #event .calendar .date-row {
+    text-align: center;
+    font-size: 40px;
+    font-weight: bolder;
+    color: white;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 5px; }
+  #event .calendar .time-row {
+    text-align: center;
+    font-size: 14px;
+    border-top: 1px solid #BDBDBD; }
+
+#event .button-para {
+  text-align: right; }
+
+#event #map {
+  min-height: 300px; }
+
+#event p {
+  margin: 0 0 10px 0; }
 
 #contact .scroll-content {
   display: table !important;
@@ -9269,3 +9362,32 @@ p {
   #cart .item__last-row .item__price {
     width: 30%;
     text-align: left; }
+
+#committee header {
+  border-bottom: 1px solid #BDBDBD;
+  color: #212121;
+  text-align: center; }
+  #committee header .image img {
+    display: inline-block;
+    max-width: 75px;
+    height: 75px;
+    border-radius: 100px; }
+  #committee header span {
+    font-style: italic;
+    color: #BDBDBD; }
+    #committee header span a {
+      padding-left: 7px; }
+
+#committee .card {
+  padding: 5px; }
+
+#committee .card-body {
+  display: flex;
+  display: -webkit-flex;
+  padding: 20px; }
+  #committee .card-body .intro ul {
+    list-style-type: disc;
+    list-style-position: outside;
+    padding: inherit; }
+    #committee .card-body .intro ul li {
+      padding: inherit; }

@@ -1,0 +1,40 @@
+#committee {
+	header {
+		border-bottom: 1px solid $divider-color;
+		color: $text-primary-color;
+		text-align: center;
+		.image {
+			img {
+				display: inline-block;
+				max-width: 75px;
+				height: 75px;
+				border-radius: 100px; 
+			}
+		}
+		span {
+			font-style: italic;
+			color: $divider-color;
+			a{
+				padding-left: 7px;
+			}
+		}
+	}
+	.card {
+		padding: 5px;
+	}
+	.card-body {
+		display: flex;
+		display: -webkit-flex;
+		padding: 20px;
+		.intro {
+			ul { 
+				list-style-type: disc;
+    			list-style-position: outside;
+    			padding: inherit;
+    			li {
+    				padding: inherit;
+    			}
+			}
+		}
+	}
+}
