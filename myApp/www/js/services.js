@@ -162,7 +162,7 @@ angular.module('mmc.services', [])
 
 	this.get = function( id ) {
 		if( id ) {
-			for( var i = 0 ; i < this.events.legth ; i++ ) {
+			for( var i = 0 ; i < this.events.length ; i++ ) {
 				if( id == this.events[i].id ) {
 					return this.events[i];
 				}

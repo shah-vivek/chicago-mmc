@@ -168,72 +168,38 @@ angular.module('starter.controllers', [])
     }];
     
 })
-.controller('LoginCtrl', function($scope, $timeout, $stateParams, ionicMaterialInk) {
+.controller('LoginCtrl', function($scope, $timeout, $stateParams) {
+    
+})
+.controller('MembershipCtrl', function($scope, $timeout, $stateParams) {
+    
+
+    $scope.open = function() {
+        window.open('http://shop.mahamandalchicago.org/main.sc' , '_blank');
+    };
+})
+
+.controller('SignUpCtrl', function($scope, $timeout, $stateParams) {
     
 })
 
-.controller('SignUpCtrl', function($scope, $timeout, $stateParams, ionicMaterialInk) {
+.controller('EventCtrl', function($scope, $timeout, $stateParams,$state , $location , $ionicLoading  , Events , Cart) {
+
     
-})
-
-.controller('EventCtrl', function($scope, $timeout, $stateParams,$state , $location , $ionicLoading , ionicMaterialInk , ionicMaterialMotion , Events , Cart) {
-
-    $scope.calendar = {};
-    $scope.calendar.eventSource = Events.get();
+    $scope.eventSource = Events.get();
         $ionicLoading.show({
           template: 'Loading...',
           duration: 3000
         });
        
 
-        $scope.onViewTitleChanged = function (title) {
-            $scope.viewTitle = title;
-        };
-
-        $scope.today = function () {
-            $scope.calendar.currentDate = new Date();
-        };
-
-        $scope.isToday = function () {
-            var today = new Date(),
-                currentCalendarDate = new Date($scope.calendar.currentDate);
-
-            today.setHours(0, 0, 0, 0);
-            currentCalendarDate.setHours(0, 0, 0, 0);
-            return today.getTime() === currentCalendarDate.getTime();
-        };
-
-        $scope.changeDate = function(n) {
-            $scope.$broadcast('changeDate' , n);
-        };
-
-        $scope.onEventSelected = function( event ) {
-            Events.selectedEvent = event;
-            $state.go('app.event-details');
-        };
-
-        $scope.onTimeSelected = function(selectedTime, events) {
-            console.log( "Event called" );
-            $scope.events = events;
-        };
-
-        $scope.addToCart = function( event ) {
-            event.added = true;
-            Cart.add( event  );
-            $scope.$emit('addedToCart', true);
-        };
-
-        $scope.remove = function( event ) {
-            event.added = false;
-            Cart.remove( event.id );
-            $scope.$emit('deletedFromCart', true);
-        };
+        
 })
 
 
-.controller('EventDetailCtrl', function($scope, $stateParams,  $timeout, ionicMaterialMotion, ionicMaterialInk , Events) {
+.controller('EventDetailCtrl', function($scope, $stateParams,  $timeout, Events) {
 
-    $scope.event = Events.selectedEvent;
+    $scope.event = Events.get( $stateParams.id );
 
     var options = {timeout: 10000, enableHighAccuracy: true};
  
@@ -248,100 +214,40 @@ angular.module('starter.controllers', [])
         };
      
         $scope.map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+        $scope.open = function() {
+            window.open('http://shop.mahamandalchicago.org/main.sc' , '_blank');
+        };
      
       
 })
 
-.controller('NotificationsCtrl', function($scope, $stateParams, $timeout, ionicMaterialInk, ionicMaterialMotion) {
-    // Set Header
-    $scope.$parent.showHeader();
-    $scope.$parent.clearFabs();
-    $scope.$parent.setHeaderFab('left');
-
-    // Delay expansion
-    $timeout(function() {
-        $scope.isExpanded = true;
-        $scope.$parent.setExpanded(false);
-    }, 300);
-
-    // Set Motion
-    ionicMaterialMotion.fadeSlideInRight();
-
-    // Set Ink
-    ionicMaterialInk.displayEffect();
+.controller('NotificationsCtrl', function($scope, $stateParams, $timeout ) {
+   
 })
 
 
-.controller('HomeCtrl', function($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk) {
-    // Set Header
-    $scope.$parent.showHeader();
-    $scope.$parent.clearFabs();
-    $scope.isExpanded = false;
-    $scope.$parent.setExpanded(false);
-    $scope.$parent.setHeaderFab(false);
+.controller('HomeCtrl', function($scope, $stateParams, $timeout ) {
+   
 
-    // Set Motion
-    $timeout(function() {
-        ionicMaterialMotion.slideUp({
-            selector: '.slide-up'
-        });
-    }, 300);
-
-    $timeout(function() {
-        ionicMaterialMotion.fadeSlideInRight({
-            startVelocity: 3000
-        });
-    }, 700);
-
-    // Set Ink
-    ionicMaterialInk.displayEffect();
+    
 })
 
-.controller('MmcCtrl', function($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk) {
-    // Set Header
-    $scope.$parent.showHeader();
-    $scope.$parent.clearFabs();
-    $scope.isExpanded = false;
-    $scope.$parent.setExpanded(false);
-    $scope.$parent.setHeaderFab(false);
-
-    // Set Motion
-    $timeout(function() {
-        ionicMaterialMotion.slideUp({
-            selector: '.slide-up'
-        });
-    }, 300);
-
-    $timeout(function() {
-        ionicMaterialMotion.fadeSlideInRight({
-            startVelocity: 3000
-        });
-    }, 700);
-
-    // Set Ink
-    ionicMaterialInk.displayEffect();
+.controller('MmcCtrl', function($scope, $stateParams, $timeout ) {
+   
 })
 
-.controller('AlbumCtrl', function($scope, $stateParams, $timeout, ionicMaterialInk, ionicMaterialMotion) {
+.controller('AlbumCtrl', function($scope, $stateParams, $timeout ) {
     $scope.$parent.showHeader();
     $scope.$parent.clearFabs();
     $scope.isExpanded = true;
     $scope.$parent.setExpanded(false);
     $scope.$parent.setHeaderFab(false);
 
-    // Activate ink for controller
-    ionicMaterialInk.displayEffect();
-
-    ionicMaterialMotion.pushDown({
-        selector: '.push-down'
-    });
-    ionicMaterialMotion.fadeSlideInRight({
-        selector: '.animate-fade-slide-in .item'
-    });
-
+    
 })
 
-.controller('GalleryCtrl', function($scope, $stateParams, $timeout, ionicMaterialInk, ionicMaterialMotion) {
+.controller('GalleryCtrl', function($scope, $stateParams, $timeout ) {
 
     $scope.items = [
     {
@@ -367,66 +273,28 @@ angular.module('starter.controllers', [])
   
 })
 
-.controller('ContactCtrl', function($scope, $stateParams, $timeout, ionicMaterialInk, ionicMaterialMotion) {
+.controller('ContactCtrl', function($scope, $stateParams, $timeout) {
 
    
   
 
 })
 
-.controller('CartCtrl', function($scope, $stateParams, $timeout, ionicMaterialInk, ionicMaterialMotion , Cart) {
+.controller('CartCtrl', function($scope, $stateParams, $timeout,  Cart) {
 
    $scope.items = Cart.get();
    
 })
 
-.controller('PresidentCtrl', function($scope, $stateParams, $timeout, ionicMaterialInk, ionicMaterialMotion ) {
+.controller('PresidentCtrl', function($scope, $stateParams, $timeout  ) {
 
-// Set Header
-    $scope.$parent.showHeader();
-    $scope.$parent.clearFabs();
-    $scope.isExpanded = false;
-    $scope.$parent.setExpanded(false);
-    $scope.$parent.setHeaderFab(false);
 
-    // Set Motion
-    $timeout(function() {
-        ionicMaterialMotion.slideUp({
-            selector: '.slide-up'
-        });
-    }, 300);
-
-    $timeout(function() {
-        ionicMaterialMotion.fadeSlideInRight({
-            startVelocity: 3000
-        });
-    }, 700);
-
-    // Set Ink
-    ionicMaterialInk.displayEffect();
    
    
 })
 
-.controller('CommitteeCtrl', function($scope, $stateParams, $timeout, ionicMaterialInk, ionicMaterialMotion) {
+.controller('CommitteeCtrl', function($scope, $stateParams, $timeout ) {
 
-   // Set Header
-    $scope.$parent.showHeader();
-    $scope.$parent.clearFabs();
-    $scope.$parent.setHeaderFab('left');
-
-    // Delay expansion
-    $timeout(function() {
-        $scope.isExpanded = true;
-        $scope.$parent.setExpanded(false);
-    }, 300);
-
-    // Set Motion
-    ionicMaterialMotion.fadeSlideInRight();
-
-    // Set Ink
-    ionicMaterialInk.displayEffect();
-  
 
 })
 
