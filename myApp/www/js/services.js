@@ -145,4 +145,35 @@ angular.module('mmc.services', [])
 	};
 
 	this.selectedEvent = null;
+}).
+.service('Albums', function( $http ){
+	
+	this.get = function( id ) {
+		
+		if( id ) {
+			
+			return $http.get("http://custom-env.kmxz8htasr.us-west-2.elasticbeanstalk.com/archive/album/"+id).then(
+					function(response){
+						return response.data;
+					},
+					function(data){
+						return data;
+					}
+				);
+
+
+		} else {
+
+			return $http.get("http://custom-env.kmxz8htasr.us-west-2.elasticbeanstalk.com/album").then(
+					function(response){
+						return response.data;
+					},
+					function(data){
+						return data;
+					}
+				);
+		}
+	};
+
+	this.selectedAlbum = null;
 });

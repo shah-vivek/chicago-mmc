@@ -245,37 +245,40 @@ angular.module('starter.controllers', [])
    
 })
 
-.controller('AlbumCtrl', function($scope, $stateParams, $state, $timeout ) {
+.controller('AlbumCtrl', function($scope, $stateParams, $state, $timeout, $ionicLoading, Albums ) {
     
-    $scope.albumSelected = function() {
+    $ionicLoading.show();
+    Albums.get().then(function(albums){
+        $scope.albums = albums;
+        $ionicLoading.hide();
+    },function(error){
+        $ionicLoading.hide();
+    });
+    $scope.albumSelected = function( album ) {
+        Albums.selectedAlbum = album.albumId;
         $state.go('app.gallery');
     };
 
     
 })
 
-.controller('GalleryCtrl', function($scope, $stateParams, $timeout ) {
+.controller('GalleryCtrl', function($scope, $stateParams, $timeout, $ionicLoading, Albums ) {
 
-    $scope.items = [
-    {
-      src:'http://www.mahamandalchicago.org/wp-content/gallery/gudhipadwa_2016/DSC_0065.JPG'
-    },
-    {
-      src:'http://www.mahamandalchicago.org/wp-content/gallery/gudhipadwa_2016/DSC_0067.JPG'
-    },
-    {
-      src:'http://www.mahamandalchicago.org/wp-content/gallery/gudhipadwa_2016/DSC_0066.JPG'
-    },
-    {
-      src:'http://www.mahamandalchicago.org/wp-content/gallery/gudhipadwa_2016/DSC_0068.JPG'
-    },
-    {
-      src:'http://www.mahamandalchicago.org/wp-content/gallery/gudhipadwa_2016/DSC_0069.JPG'
-    },
-    {
-      src:'http://www.mahamandalchicago.org/wp-content/gallery/gudhipadwa_2016/DSC_0084.JPG'
-    }
-  ];
+    $ionicLoading.show();
+
+    Albums.get(Albums.selectedAlbum).then(function(imageData){
+        $scope.images = [];
+        var images = [];
+        var ob = { src : '' };
+        for( var i = 0 ; i < imageData.length ; i++) {
+            ob.src = "data:image/png;base64,"+imageData[i];
+            images.push( ob );
+        }
+        $scope.images = images;
+        $ionicLoading.hide();
+    },function(error){
+        $ionicLoading.hide();
+    });
 
   
 })

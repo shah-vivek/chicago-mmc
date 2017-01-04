@@ -1,36 +1,20 @@
 <ion-view view-title="Album" id="album">
     <ion-content>
         <div class="list">
-            <div ng-click="albumSelected()" class="card card-gallery item item-text-wrap">
+            <div ng-click="albumSelected()" class="card card-gallery item item-text-wrap" ng-repeat="album in albums">
                 <div class="ink">
                     <img class="full-image" src="img/banner.jpg">
                 </div>
                 <div class="item ">
-                    <span>Album 1</span>
+                    <span>{{ album.albumName }}</span>
                 </div>
             </div>
-            <div ui-sref="app.gallery" class="card card-gallery item item-text-wrap">
+            <div ui-sref="app.gallery" class="card card-gallery item item-text-wrap" ng-repeat="album in albums">
                 <div class="ink">
                     <img class="full-image" src="img/banner.jpg">
                 </div>
                 <div class="item ">
-                    <span>Album 1</span>
-                </div>
-            </div>
-            <div ui-sref="app.gallery" class="card card-gallery item item-text-wrap">
-                <div class="ink">
-                    <img class="full-image" src="img/banner.jpg">
-                </div>
-                <div class="item ">
-                    <span>Album 1</span>
-                </div>
-            </div>
-            <div ui-sref="app.gallery" class="card card-gallery item item-text-wrap">
-                <div class="ink">
-                    <img class="full-image" src="img/banner.jpg">
-                </div>
-                <div class="item ">
-                    <span>Album 1</span>
+                    <span>{{ album.albumName }}</span>
                 </div>
             </div>
         </div>
