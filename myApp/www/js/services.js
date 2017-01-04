@@ -115,60 +115,32 @@ angular.module('mmc.services', [])
 		];
 	};
 })
-.service('Events', function(){
-	this.events = [
-			{
-				title: 'Event 1',
-				startTime : new Date(Date.UTC(2016, 11, 26)),
-				endTime: new Date(Date.UTC(2016, 11, 27 , 23 , 59 , 59)),
-				id: 'event-1',
-				allDay: false,
-				description: 'This is event1.It will be a paragraph text. It will have atlest two tot three lines.',
-				venue: 'x , xyz , state , country , pincode',
-				price: 30
-			},
-			{
-				title: 'Event 2',
-				startTime : new Date(Date.UTC(2016, 11, 27)),
-				endTime: new Date(Date.UTC(2016, 11, 28 )),
-				id: 'event-2',
-				allDay: false,
-				description: 'This is event2.It will be a paragraph text. It will have atlest two tot three lines.',
-				venue: 'x , xyz , state , country , pincode',
-				price: 40
-			},
-			{
-				title: 'Event 3',
-				startTime : new Date(Date.UTC(2016, 11, 27)),
-				endTime: new Date(Date.UTC(2016, 11, 29 , 23 , 59 , 59)),
-				id: 'event-3',
-				allDay: false,
-				description: 'This is event3.It will be a paragraph text. It will have atlest two tot three lines.',
-				venue: 'x , xyz , state , country , pincode',
-				price: 50
-			},
-			{
-				title: 'Event 4',
-				startTime : new Date(Date.UTC(2016, 11, 28)),
-				endTime: new Date(Date.UTC(2016, 11, 29)),
-				id: 'event-4',
-				allDay: false,
-				description: 'This is event4.It will be a paragraph text. It will have atlest two tot three lines.',
-				venue: 'x , xyz , state , country , pincode',
-				price: 20
-
-			}
-	];
-
+.service('Events', function( $http ){
+	
 	this.get = function( id ) {
+		
 		if( id ) {
-			for( var i = 0 ; i < this.events.length ; i++ ) {
-				if( id == this.events[i].id ) {
-					return this.events[i];
-				}
-			}
+			
+			return $http.get("http://custom-env.kmxz8htasr.us-west-2.elasticbeanstalk.com/events/get?eventId="+id).then(
+					function(response){
+						return response.data;
+					},
+					function(data){
+						return data;
+					}
+				);
+
+
 		} else {
-			return this.events;
+
+			return $http.get("http://custom-env.kmxz8htasr.us-west-2.elasticbeanstalk.com/events/list").then(
+					function(response){
+						return response.data;
+					},
+					function(data){
+						return data;
+					}
+				);
 		}
 	};
 

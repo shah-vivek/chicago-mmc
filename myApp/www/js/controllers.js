@@ -185,11 +185,12 @@ angular.module('starter.controllers', [])
 
 .controller('EventCtrl', function($scope, $timeout, $stateParams,$state , $location , $ionicLoading  , Events , Cart) {
 
-    
-    $scope.eventSource = Events.get();
-        $ionicLoading.show({
-          template: 'Loading...',
-          duration: 3000
+        $ionicLoading.show();
+        Events.get().then(function(events){
+            $scope.eventSource = events;
+            $ionicLoading.hide();
+        },function(error){
+            $ionicLoading.hide();
         });
        
 
@@ -197,9 +198,15 @@ angular.module('starter.controllers', [])
 })
 
 
-.controller('EventDetailCtrl', function($scope, $stateParams,  $timeout, Events) {
+.controller('EventDetailCtrl', function($scope, $stateParams,  $timeout, $ionicLoading, Events) {
 
-    $scope.event = Events.get( $stateParams.id );
+    $ionicLoading.show();
+    Events.get( $stateParams.id ).then(function(event) {
+        $scope.event = event;
+        $ionicLoading.hide();
+    },function(error){
+        $ionicLoading.hide();
+    });
 
     var options = {timeout: 10000, enableHighAccuracy: true};
  

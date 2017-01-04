@@ -1,33 +1,33 @@
 <ion-view view-title="Event" id="event">
-    <ion-content>
+    <ion-content >
         <div class="hero" style="background-image: url('img/banner.jpg');">
         </div>
         <div class="event-card">
-            <h2 class="event-title">{{ event.title }}</h2>
+            <h2 class="event-title">{{ event.eventName }}</h2>
 
-            <p class="event-description">{{ event.description }}</p>
+            <p class="event-description">{{ event.eventDescription }}</p>
 
             <p class="event-time">
                 <div class="calendar">
                     <div class="date-col"> 
-                        <div class="year-row">{{ event.startTime | date: 'yyyy'}}</div>
-                        <div class="date-row">{{ event.startTime | date: 'dd'}}</div>
-                        <div class="month-row">{{ event.startTime | date: 'MMM'}}</div>
-                        <div class="time-row">{{ event.startTime | date: 'HH : mm'}}</div>
+                        <div class="year-row">{{ event.eventStart | date: 'yyyy'}}</div>
+                        <div class="date-row">{{ event.eventStart | date: 'dd'}}</div>
+                        <div class="month-row">{{ event.eventStart | date: 'MMM'}}</div>
+                        <div class="time-row">{{ event.eventStart | date: 'HH : mm'}}</div>
                     </div>
                 </div>
                 <span><i>to</i></span>
                 <div class="calendar">
                     <div class="date-col"> 
-                        <div class="year-row">{{ event.endTime | date: 'yyyy'}}</div>
-                        <div class="date-row">{{ event.endTime | date: 'dd'}}</div>
-                        <div class="month-row">{{ event.endTime | date: 'MMM'}}</div>
-                        <div class="time-row">{{ event.endTime | date: 'HH : mm'}}</div>
+                        <div class="year-row">{{ event.eventEnd | date: 'yyyy'}}</div>
+                        <div class="date-row">{{ event.eventEnd | date: 'dd'}}</div>
+                        <div class="month-row">{{ event.eventEnd | date: 'MMM'}}</div>
+                        <div class="time-row">{{ event.eventEnd | date: 'HH : mm'}}</div>
                     </div>
                 </div>
             </p>
             <p class="event-venue">
-                <span class="ion-location"></span> <span>{{ event.venue }}</span>
+                <span class="ion-location"></span> <span>{{ event.eventVenue }}</span>
             </p>
 
             <p class="button-para">
@@ -38,6 +38,6 @@
         </div>
         <div id="map">
                
-            </div> 
+        </div> 
     </ion-content>
 </ion-view>
