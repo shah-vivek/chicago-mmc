@@ -137,8 +137,8 @@ angular.module('starter', ['ionic', 'starter.controllers',  'ionic-sidemenu' , '
         }
     })
 
-    .state('app.event-details', {
-        url: '/event-detail',
+    .state('app.eventDetails', {
+        url: '/eventDetail/:id',
         views: {
             'menuContent': {
                 templateUrl: 'templates/eventTemplate.html',
