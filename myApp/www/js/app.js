@@ -137,18 +137,12 @@ angular.module('starter', ['ionic', 'starter.controllers',  'ionic-sidemenu' , '
         }
     })
 
-    .state('app.eventDetails', {
-        url: '/eventDetail/:id',
+    .state('app.eventdetails', {
+        url: '/eventdetails',
         views: {
             'menuContent': {
-                templateUrl: 'templates/eventTemplate.html',
+                templateUrl: 'templates/edetail.html',
                 controller: 'EventDetailCtrl'
-            }
-        },
-        params : {
-            id: {
-                    value: null,
-                    squash: true
             }
         }
     })
@@ -157,7 +151,7 @@ angular.module('starter', ['ionic', 'starter.controllers',  'ionic-sidemenu' , '
         url: '/contact',
         views: {
             'menuContent': {
-                templateUrl: 'templates/contact-us.html',
+                templateUrl: 'templates/contact.html',
                 controller: 'ContactCtrl'
             }
         }

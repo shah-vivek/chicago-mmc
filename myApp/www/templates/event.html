@@ -1,42 +1,6 @@
-<ion-view view-title="Album" id="album">
-    <ion-content>
-        <div class="list">
-            <div ui-sref="app.gallery" class="card card-gallery item item-text-wrap">
-                <div class="ink">
-                    <img class="full-image" src="img/banner.jpg">
-                </div>
-                <div class="item ">
-                    <span>Album 1</span>
-                </div>
-            </div>
-            <div ui-sref="app.gallery" class="card card-gallery item item-text-wrap">
-                <div class="ink">
-                    <img class="full-image" src="img/banner.jpg">
-                </div>
-                <div class="item ">
-                    <span>Album 1</span>
-                </div>
-            </div>
-            <div ui-sref="app.gallery" class="card card-gallery item item-text-wrap">
-                <div class="ink">
-                    <img class="full-image" src="img/banner.jpg">
-                </div>
-                <div class="item ">
-                    <span>Album 1</span>
-                </div>
-            </div>
-            <div ui-sref="app.gallery" class="card card-gallery item item-text-wrap">
-                <div class="ink">
-                    <img class="full-image" src="img/banner.jpg">
-                </div>
-                <div class="item ">
-                    <span>Album 1</span>
-                </div>
-            </div>
-        </div>
-        <ion-list view-title='Events' id="event">
-       
-           <ion-item class="card" ng-repeat="event in eventSource">
+<ion-view view-title='Events' id="event">
+        <ion-content scroll="true" class="main-content" id="event">
+           <div class="card" ng-repeat="event in eventSource">
               <div class="card-1">
                 <div class="card-1-container">
                 </div>
@@ -47,15 +11,13 @@
                   <p> <span class="ion-clock"></span> {{ event.eventStart | date: 'yyyy-MM-dd HH:mm'}} </p>
                 </div>
               </div>
-              <div class="card-3" ui-sref="app.event-details({ id : event.eventId })">
+              <div class="card-3" ng-click="eventSelected( event )">
                 <div class="card-3-container">
                   <div class="next">
                     <span class="ion-chevron-right"></span>
                   </div>
                 </div>
               </div>
-           </ion-item> 
-           
-        </ion-list>
-    </ion-content>
+           </div>
+        </ion-content>
 </ion-view>

@@ -194,19 +194,18 @@ angular.module('starter.controllers', [])
         });
        
 
+       $scope.eventSelected = function( event ) {
+            Events.selectedEvent = event;
+            $state.go('app.eventdetails');
+       };
+
         
 })
 
 
 .controller('EventDetailCtrl', function($scope, $stateParams,  $timeout, $ionicLoading, Events) {
 
-    $ionicLoading.show();
-    Events.get( $stateParams.id ).then(function(event) {
-        $scope.event = event;
-        $ionicLoading.hide();
-    },function(error){
-        $ionicLoading.hide();
-    });
+    $scope.event = Events.selectedEvent;
 
     var options = {timeout: 10000, enableHighAccuracy: true};
  
@@ -246,12 +245,11 @@ angular.module('starter.controllers', [])
    
 })
 
-.controller('AlbumCtrl', function($scope, $stateParams, $timeout ) {
-    $scope.$parent.showHeader();
-    $scope.$parent.clearFabs();
-    $scope.isExpanded = true;
-    $scope.$parent.setExpanded(false);
-    $scope.$parent.setHeaderFab(false);
+.controller('AlbumCtrl', function($scope, $stateParams, $state, $timeout ) {
+    
+    $scope.albumSelected = function() {
+        $state.go('app.gallery');
+    };
 
     
 })
