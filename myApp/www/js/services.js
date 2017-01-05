@@ -145,7 +145,7 @@ angular.module('mmc.services', [])
 	};
 
 	this.selectedEvent = null;
-}).
+})
 .service('Albums', function( $http ){
 	
 	this.get = function( id ) {

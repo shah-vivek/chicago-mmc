@@ -203,14 +203,11 @@ angular.module('starter.controllers', [])
 })
 
 
-.controller('EventDetailCtrl', function($scope, $stateParams,  $timeout, $ionicLoading, Events) {
+.controller('EventdetailsCtrl', function($scope, $stateParams,  $timeout, $ionicLoading, Events) {
 
-    $scope.event = Events.selectedEvent;
-
-    var options = {timeout: 10000, enableHighAccuracy: true};
- 
-   
- 
+    $ionicLoading.show();
+    Events.get($stateParams.id).then(function(event){
+        $scope.event = event;
         var latLng = new google.maps.LatLng(41.7582711, -88.1910167);
      
         var mapOptions = {
@@ -219,9 +216,18 @@ angular.module('starter.controllers', [])
           mapTypeId: google.maps.MapTypeId.ROADMAP
         };
 
-        
-     
         $scope.map = new google.maps.Map(document.getElementById("map"), mapOptions);
+        $ionicLoading.hide();
+
+    },function(error){
+        $ionicLoading.hide();
+    });
+
+    var options = {timeout: 10000, enableHighAccuracy: true};
+ 
+   
+ 
+        
 
         $scope.open = function() {
             window.open('http://shop.mahamandalchicago.org/main.sc' , '_blank');
@@ -266,7 +272,7 @@ angular.module('starter.controllers', [])
 
     $ionicLoading.show();
 
-    Albums.get(Albums.selectedAlbum).then(function(imageData){
+    Albums.get($stateParams.id).then(function(imageData){
         $scope.images = [];
         var images = [];
         var ob = { src : '' };
