@@ -6,7 +6,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'ui.router' , 'starter.controllers',  'ionic-sidemenu' , 'ionMdInput',  'mmc.services' , 'mmc.directives', 'ion-gallery'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform , $state, $rootScope, Login) {
     $ionicPlatform.ready(function() {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
@@ -16,6 +16,17 @@ angular.module('starter', ['ionic', 'ui.router' , 'starter.controllers',  'ionic
         if (window.StatusBar) {
             // org.apache.cordova.statusbar required
             StatusBar.styleDefault();
+        }
+        $rootScope.user = JSON.parse(localStorage.getItem('user'));
+        if( $rootScope.user) {
+            Login.enter($rootScope.user).then(function(response){
+               
+                if( response.userDetails ) {
+                    $state.go('app.mmc');
+                }
+            },function(error){
+                
+            });
         }
     });
 })
@@ -36,7 +47,7 @@ angular.module('starter', ['ionic', 'ui.router' , 'starter.controllers',  'ionic
         controller: 'LoginCtrl'
     })
     .state('signup', {
-        url: '/login',
+        url: '/signup',
         templateUrl: 'templates/sign-up.html',
         controller: 'SignUpCtrl'
     })
@@ -133,6 +144,16 @@ angular.module('starter', ['ionic', 'ui.router' , 'starter.controllers',  'ionic
             'menuContent': {
                 templateUrl: 'templates/event.html',
                 controller: 'EventCtrl'
+            }
+        }
+    })
+
+    .state('app.tickets', {
+        url: '/tickets',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/tickets.html',
+                controller: 'TicketsCtrl'
             }
         }
     })

@@ -7,15 +7,15 @@
 
                     <div class="list">
                         <label class="item item-input">
-                            <input type="text" placeholder="Subject">
+                            <input type="text" placeholder="Subject" ng-model="message.subject">
                         </label>
                         <label class="item item-input">
-                            <textarea placeholder="Your message"></textarea>
+                            <textarea placeholder="Your message" ng-model="message.messageBody"></textarea>
                         </label>
                         
                     </div>
 
-                    <button class="button button-block button-accent" ui-sref="app.home">
+                    <button class="button button-block button-accent" ng-click="send()">
                         Click to send
                     </button>
                 </div>

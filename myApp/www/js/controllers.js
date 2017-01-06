@@ -3,7 +3,7 @@
 
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $ionicPopover, $timeout , Cart) {
+.controller('AppCtrl', function($scope, $ionicModal, $ionicPopover, $state, $timeout ) {
     // Form data for the login modal
     $scope.loginData = {};
     $scope.isExpanded = false;
@@ -86,15 +86,11 @@ angular.module('starter.controllers', [])
         }
     };
 
-    $scope.numberOfItems = 0;
-
-    $scope.$on('addedToCart', function(event, data) {
-      $scope.numberOfItems = Cart.get().length;
-    });
-
-    $scope.$on('deletedFromCart', function(event, data) {
-      $scope.numberOfItems = Cart.get().length;
-    });
+    $scope.logout = function() {
+        localStorage.removeItem("user");
+        $state.go('login');
+    };
+    
 })
 .controller('SideMenuCtrl', function($scope ) {
 
@@ -147,17 +143,17 @@ angular.module('starter.controllers', [])
     },
     {
         id: 4,
+        name: "Tickets",
+        icon: null,
+        level: 0,
+        state: 'app.tickets'
+    },
+    {
+        id: 5,
         name: "Albums",
         icon: null,
         level: 0,
         state: 'app.album'
-    },
-    {
-        id: 5,
-        name: "Notifications",
-        icon: null,
-        level: 0,
-        state: 'app.notifications'
     },
     {
         id: 6,
@@ -168,8 +164,25 @@ angular.module('starter.controllers', [])
     }];
     
 })
-.controller('LoginCtrl', function($scope, $timeout, $stateParams) {
-    
+.controller('LoginCtrl', function($scope, $timeout, $state, $stateParams, $ionicLoading, Login) {
+
+    $scope.user = {
+        email: '',
+        password: ''
+    };
+
+    $scope.login = function() {
+        $ionicLoading.show();
+        Login.enter($scope.user).then(function(response){
+            $ionicLoading.hide();
+            if( response.userDetails ) {
+                localStorage.setItem( "user" , JSON.stringify($scope.user));
+                $state.go('app.mmc');
+            }
+        },function(error){
+            $ionicLoading.hide();
+        });
+    };
 })
 .controller('MembershipCtrl', function($scope, $timeout, $stateParams) {
     
@@ -183,7 +196,7 @@ angular.module('starter.controllers', [])
     
 })
 
-.controller('EventCtrl', function($scope, $timeout, $stateParams,$state , $location , $ionicLoading  , Events , Cart) {
+.controller('EventCtrl', function($scope, $timeout, $stateParams,$state , $location , $ionicLoading  , Events ) {
 
         $ionicLoading.show();
         Events.get().then(function(events){
@@ -289,20 +302,51 @@ angular.module('starter.controllers', [])
   
 })
 
-.controller('ContactCtrl', function($scope, $stateParams, $timeout) {
+.controller('ContactCtrl', function($scope, $stateParams, $timeout, $ionicLoading, Message) {
 
-   
+   $scope.message = {
+        subject : '',
+        messageBody: '',
+        date: '',
+        sender: ''
+   };
+
+   $scope.send = function () {
+        $scope.date = new Date();
+        $scope.message.date = $scope.date.toJSON();
+        $ionicLoading.show();
+
+        Message.send($scope.message).then(function(response){
+            $ionicLoading.hide();
+            $scope.message = {
+                subject : '',
+                messageBody: '',
+                date: '',
+                sender: ''
+           };
+        }, function(response){
+            $ionicLoading.hide();
+        });
+
+   };
   
 
 })
 
-.controller('CartCtrl', function($scope, $stateParams, $timeout,  Cart) {
+.controller('CartCtrl', function($scope, $stateParams, $timeout) {
 
    $scope.items = Cart.get();
    
 })
 
 .controller('PresidentCtrl', function($scope, $stateParams, $timeout  ) {
+
+
+   
+   
+})
+
+.controller('TicketsCtrl', function($scope, $stateParams, $timeout  ) {
 
 
    

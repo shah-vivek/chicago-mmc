@@ -1,48 +1,42 @@
-#event .event-detail-container {
-    border-width: 0 0 0 0;
-    tr {
-		border: 2px solid white;
-	}
-}
-#event{
-	.monthview-primary-with-event {
-		background-color: $primary-color;
-	}
-	.monthview-current {
-		background-color: $dark-primary-color;
-		opacity: 0.8;
-	}
-	.monthview-selected {
-		background-color: $dark-primary-color;
-	}
-	.calendar-event-inner {
+#event {
+	.card {
+		display: flex;
+		display: -webkit-flex; 
 
-	}
-	.event-detail-container {
-		margin-top: 310px;
-	}
-
-}
-#event .event-detail-container-custom  {
-	position: absolute;
-	top: 300px;
-	width: 100%;
-	.list {
-		padding: 10px;
-	}
-	.item {
-		border-bottom: 1px solid $divider-color;
-	}
-	.btn-row {
-		text-align: right;
-		.button {
-			min-height: 30px;
-    		line-height: 30px;
+		.card-1,.card-2,.card-3 {
+			display: inline-block;
+		}
+		.card-1 {
+			width: 5%;
+			.card-1-container {
+				display: table;
+				width: 100%;
+				height: 100%;
+				background-color: $purple;
+				color: white;
+			}
+		}
+		.card-2 {
+			width: 85%;
+			padding: 7.5px;
+		}
+		.card-3 {
+			width: 10%;
+			.card-3-container {
+				display: table;
+				width: 100%;
+				height: 100%;
+				background-color: $purple;
+				color: white;
+			}
+			.next {
+				display: table-cell;
+				text-align: center;
+				vertical-align: middle;
+				font-size: 30px;
+			}
 		}
 	}
-}
-#event .button-bar>.button .icon:before, .button-bar>.button:before {
-    line-height: inherit !important;
 }
 #event {
 	.hero {

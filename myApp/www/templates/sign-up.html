@@ -1,6 +1,9 @@
 <ion-view id="login" hide-nav-bar="true">
-    <ion-content padding="true" scroll="false">
+    <ion-content>
         <form>
+            <div class="form-header">
+               <h2>SIGN UP</h2>
+            </div>
             <div class="row responsive-md">
                 <div class="col col-50 col-offset-25">
 
@@ -22,15 +25,13 @@
                         </label>
                     </div>
 
-                    <button class="button button-block button-accent" ui-sref="app.home">
+                    <button class="button button-block button-login icon-right ion-chevron-right" ui-sref="app.home">
                         Sign Up
                     </button>
 
-                   <div class="row row-no-padding">
-                        <div class="col text-center">
-                            <button class="button button-block button-purple" ui-sref="login">
-                                Login
-                            </button>
+                   <div class="row row-no-padding options">
+                        <div class="col text-center" ui-sref="login">
+                            <span class="ion-chevron-left">&nbsp;</span><span>Back</span>
                         </div>
                     </div>
                 </div>

@@ -9109,7 +9109,7 @@ p {
   -o-background-size: cover;
   background-size: cover;
   background-color: #F09819;
-  background: -webkit-linear-gradient(#FF512F, #F09819); }
+  background: #FFB74D; }
   #login .item-md-label .input-label {
     color: white;
     opacity: 0.5; }
@@ -9143,16 +9143,21 @@ p {
         background: -webkit-linear-gradient(#F09819, #FF512F);
         -webkit-background-clip: text;
         -webkit-text-fill-color: #F09819;
-        text-shadow: 0 1px 1px #FF512F; }
+        text-shadow: none; }
       #login form .form-header h1 {
         margin-bottom: 0; }
   #login .header {
     padding-bottom: 20px; }
-  #login .button {
-    border-radius: 25px; }
+  #login .button-login {
+    background: #F09819;
+    color: white;
+    font-weight: bolder; }
   #login .button.button-light.active, #login .button.button-light.activated {
     color: #fff;
-    opacity: inherit; }
+    opacity: inherit;
+    background: #F09819; }
+  #login .options {
+    color: white; }
 
 #home .hero > .content {
   top: 60px; }
