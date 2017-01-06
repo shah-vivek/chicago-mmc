@@ -1,5 +1,5 @@
-<ion-view id="login" hide-nav-bar="true">
-    <ion-content padding="true">
+<ion-view class="login" hide-nav-bar="true">
+    <ion-content>
         <form>
             <div class="form-header">
                 <img class="logo" src="img/ganesha.svg">
@@ -11,28 +11,28 @@
                     <div class="login-form">
                         <div class="list">
                             <label class="item item-input">
-                                <ion-md-input type="text" placeholder="First name" ng-model="user.firstName">
+                                <input class="item-input-custom" type="text" placeholder="First name" ng-model="user.firstName">
                             </label>
                             <label class="item item-input">
-                                <ion-md-input type="text" placeholder="Last name" ng-model="user.lastName">
+                                <input class="item-input-custom" type="text" placeholder="Last name" ng-model="user.lastName">
                             </label>
                             <label class="item item-input">
-                                <ion-md-input type="text" placeholder="Email" ng-model="user.email">
+                                <input class="item-input-custom" type="text" placeholder="Email" ng-model="user.email">
                             </label>
                             <label class="item item-input">
-                                <ion-md-input type="password" placeholder="Password" ng-model="user.pass">
+                                <input class="item-input-custom" type="password" placeholder="Password" ng-model="user.pass">
                             </label>
                             <label class="item item-input">
-                                <ion-md-input type="password" placeholder="Confirm Password" ng-model="cpass">
+                                <input class="item-input-custom" type="password" placeholder="Confirm password" ng-model="cpass">
                             </label>
                         </div>
 
                         <button class="button button-block button-login icon-right ion-chevron-right" ng-click="signup()">
-                            SignUp
+                            Sign Up
                         </button>
                     </div>
                     <div class="row options">
-                        <div class="col text-center" ui-sref="signup">
+                        <div class="col text-center" ui-sref="login">
                             <span>Back</span>
                         </div>
                     </div>

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget android-versionCode="22" id="com.ionicframework.myapp5386840" version="0.2.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget android-versionCode="28" id="com.ionicframework.myapp5386840" version="0.2.8" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>महाराष्ट्र मंडळ,शिकागो</name>
     <description>
         An Ionic Framework and Cordova project.
@@ -25,7 +25,6 @@
     <plugin name="cordova-custom-config" spec="~3.0.0" />
     <plugin name="cordova-plugin-splashscreen" spec="~4.0.0" />
     <plugin name="cordova-plugin-statusbar" spec="~2.2.0" />
-    <plugin name="ionic-plugin-keyboard" spec="~2.2.1" />
     <platform name="ios">
         <icon height="57" src="resources/ios/icon/icon.png" width="57" />
         <icon height="114" src="resources/ios/icon/icon@2x.png" width="114" />
@@ -98,4 +97,5 @@
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
     <plugin name="cordova-plugin-inappbrowser" spec="~1.6.1" />
+    <plugin name="ionic-plugin-keyboard" spec="~2.2.1" />
 </widget>

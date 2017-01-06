@@ -222,6 +222,7 @@ angular.module('starter.controllers', [])
         email: '',
         type: 'user'
     };
+    $scope.cpass = '';
 
     $scope.signup = function() {
         $ionicLoading.show();
