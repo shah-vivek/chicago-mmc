@@ -5,14 +5,15 @@ angular.module('mmc.services', [])
 
 	this.enter = function( user ) {
 
-		return $http.post("http://custom-env.kmxz8htasr.us-west-2.elasticbeanstalk.com/login/",user).then(
-				function(response){
-					return response.data;
-				},
-				function(response){
-					return response;
-				}
-			);
+		return $http.post("http://custom-env.kmxz8htasr.us-west-2.elasticbeanstalk.com/login/",user);
+	};
+	
+})
+.service('SignUp',function ( $http) {
+
+	this.enter = function( user ) {
+
+		return $http.post("http://custom-env.kmxz8htasr.us-west-2.elasticbeanstalk.com/members/signup",user);
 	};
 	
 })
@@ -22,26 +23,12 @@ angular.module('mmc.services', [])
 		
 		if( id ) {
 			
-			return $http.get("http://custom-env.kmxz8htasr.us-west-2.elasticbeanstalk.com/events/get?eventId="+id).then(
-					function(response){
-						return response.data;
-					},
-					function(data){
-						return data;
-					}
-				);
+			return $http.get("http://custom-env.kmxz8htasr.us-west-2.elasticbeanstalk.com/events/get?eventId="+id);
 
 
 		} else {
 
-			return $http.get("http://custom-env.kmxz8htasr.us-west-2.elasticbeanstalk.com/events/list").then(
-					function(response){
-						return response.data;
-					},
-					function(data){
-						return data;
-					}
-				);
+			return $http.get("http://custom-env.kmxz8htasr.us-west-2.elasticbeanstalk.com/events/list");
 		}
 	};
 
@@ -53,26 +40,12 @@ angular.module('mmc.services', [])
 		
 		if( id ) {
 			
-			return $http.get("http://custom-env.kmxz8htasr.us-west-2.elasticbeanstalk.com/archive/album/"+id).then(
-					function(response){
-						return response.data;
-					},
-					function(data){
-						return data;
-					}
-				);
+			return $http.get("http://custom-env.kmxz8htasr.us-west-2.elasticbeanstalk.com/archive/album/"+id);
 
 
 		} else {
 
-			return $http.get("http://custom-env.kmxz8htasr.us-west-2.elasticbeanstalk.com/album").then(
-					function(response){
-						return response.data;
-					},
-					function(data){
-						return data;
-					}
-				);
+			return $http.get("http://custom-env.kmxz8htasr.us-west-2.elasticbeanstalk.com/album");
 		}
 	};
 
@@ -82,13 +55,6 @@ angular.module('mmc.services', [])
 
 	this.send = function( message ) {
 
-		return $http.post("http://custom-env.kmxz8htasr.us-west-2.elasticbeanstalk.com/message/send/").then(
-					function(response){
-						return response.data;
-					},
-					function(data){
-						return data;
-					}
-				);
+		return $http.post("http://custom-env.kmxz8htasr.us-west-2.elasticbeanstalk.com/message/send", message);
 	};
 });

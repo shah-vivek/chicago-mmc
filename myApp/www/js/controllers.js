@@ -90,6 +90,14 @@ angular.module('starter.controllers', [])
         localStorage.removeItem("user");
         $state.go('login');
     };
+
+
+     $ionicModal.fromTemplateUrl('custom-modal.html', {
+        scope: $scope,
+        animation: 'slide-in-up'
+      }).then(function(modal) {
+        $scope.modal = modal;
+    });
     
 })
 .controller('SideMenuCtrl', function($scope ) {
@@ -100,7 +108,7 @@ angular.module('starter.controllers', [])
         id: 1,
         level: 0,
         name: 'About Us',
-        icon: "",
+        icon: "ion-information-circled",
         items: [
               {
                 id: 10,
@@ -130,41 +138,41 @@ angular.module('starter.controllers', [])
     {
         id: 2,
         name: "Memmbership",
-        icon: null,
+        icon: "ion-person-add",
         level: 0,
         state: 'app.membership'
     },
     {
         id: 3,
         name: "Events",
-        icon: null,
+        icon: "ion-calendar",
         level: 0,
         state: 'app.event'
     },
     {
         id: 4,
-        name: "Tickets",
-        icon: null,
-        level: 0,
-        state: 'app.tickets'
-    },
-    {
-        id: 5,
         name: "Albums",
-        icon: null,
+        icon: "ion-images",
         level: 0,
         state: 'app.album'
     },
     {
-        id: 6,
+        id: 5,
         name: "Contact Us",
-        icon: null,
+        icon: "ion-at",
         level: 0,
         state: 'app.contact'
     }];
     
 })
-.controller('LoginCtrl', function($scope, $timeout, $state, $stateParams, $ionicLoading, Login) {
+.controller('LoginCtrl', function($scope, $timeout, $state, $stateParams, $ionicLoading, $ionicModal, Login) {
+
+    $ionicModal.fromTemplateUrl('custom-modal.html', {
+        scope: $scope,
+        animation: 'slide-in-up'
+      }).then(function(modal) {
+        $scope.modal = modal;
+    });
 
     $scope.user = {
         email: '',
@@ -175,14 +183,20 @@ angular.module('starter.controllers', [])
         $ionicLoading.show();
         Login.enter($scope.user).then(function(response){
             $ionicLoading.hide();
-            if( response.userDetails ) {
-                localStorage.setItem( "user" , JSON.stringify($scope.user));
+            if( response.data.userDetails ) {
+                localStorage.setItem( "user" , JSON.stringify(response.data.userDetails));
                 $state.go('app.mmc');
+            } else {
+                $scope.modal.msg = response.data.status.statusMsg;
+                $scope.modal.show();
             }
         },function(error){
             $ionicLoading.hide();
+            $scope.modal.msg = "Internal server error";
+            $scope.modal.show();
         });
     };
+    
 })
 .controller('MembershipCtrl', function($scope, $timeout, $stateParams) {
     
@@ -192,15 +206,47 @@ angular.module('starter.controllers', [])
     };
 })
 
-.controller('SignUpCtrl', function($scope, $timeout, $stateParams) {
+.controller('SignUpCtrl', function($scope, $timeout, $stateParams, $ionicModal , $ionicLoading, $state , SignUp) {
     
+     $ionicModal.fromTemplateUrl('custom-modal.html', {
+        scope: $scope,
+        animation: 'slide-in-up'
+      }).then(function(modal) {
+        $scope.modal = modal;
+    });
+
+    $scope.user = {
+        firstName: '',
+        lastName: '',
+        pass: '',
+        email: '',
+        type: 'user'
+    };
+
+    $scope.signup = function() {
+        $ionicLoading.show();
+        SignUp.enter($scope.user).then(function(response){
+            $ionicLoading.hide();
+            if(response.data.status == 'SUCCESS') {
+                localStorage.setItem('user' , JSON.stringify($scope.user));
+                $state.go('app.mmc');
+            } else {
+                $scope.modal.msg = response.data.statusMsg;
+                $scope.modal.show();
+            }
+        }, function(response){
+                $ionicLoading.hide();
+                $scope.modal.msg = "Internal server error";
+                $scope.modal.show();
+        });
+    }
 })
 
 .controller('EventCtrl', function($scope, $timeout, $stateParams,$state , $location , $ionicLoading  , Events ) {
 
         $ionicLoading.show();
-        Events.get().then(function(events){
-            $scope.eventSource = events;
+        Events.get().then(function(response){
+            $scope.eventSource = response.data;
             $ionicLoading.hide();
         },function(error){
             $ionicLoading.hide();
@@ -219,8 +265,8 @@ angular.module('starter.controllers', [])
 .controller('EventdetailsCtrl', function($scope, $stateParams,  $timeout, $ionicLoading, Events) {
 
     $ionicLoading.show();
-    Events.get($stateParams.id).then(function(event){
-        $scope.event = event;
+    Events.get($stateParams.id).then(function(response){
+        $scope.event = response.data;
         var latLng = new google.maps.LatLng(41.7582711, -88.1910167);
      
         var mapOptions = {
@@ -267,8 +313,8 @@ angular.module('starter.controllers', [])
 .controller('AlbumCtrl', function($scope, $stateParams, $state, $timeout, $ionicLoading, Albums ) {
     
     $ionicLoading.show();
-    Albums.get().then(function(albums){
-        $scope.albums = albums;
+    Albums.get().then(function(response){
+        $scope.albums = response.data;
         $ionicLoading.hide();
     },function(error){
         $ionicLoading.hide();
@@ -285,12 +331,12 @@ angular.module('starter.controllers', [])
 
     $ionicLoading.show();
 
-    Albums.get($stateParams.id).then(function(imageData){
+    Albums.get($stateParams.id).then(function(response){
         $scope.images = [];
         var images = [];
         var ob = { src : '' };
-        for( var i = 0 ; i < imageData.length ; i++) {
-            ob.src = "data:image/png;base64,"+imageData[i];
+        for( var i = 0 ; i < response.data.length ; i++) {
+            ob.src = "data:image/png;base64,"+response.data[i];
             images.push( ob );
         }
         $scope.images = images;
@@ -305,25 +351,27 @@ angular.module('starter.controllers', [])
 .controller('ContactCtrl', function($scope, $stateParams, $timeout, $ionicLoading, Message) {
 
    $scope.message = {
-        subject : '',
-        messageBody: '',
-        date: '',
-        sender: ''
-   };
+        subject: "",
+        messageBody: "",
+        sender: "",
+        date : ""
+    };
 
    $scope.send = function () {
+        
         $scope.date = new Date();
+        $scope.message.sender = JSON.parse(localStorage.getItem('user')).email;
         $scope.message.date = $scope.date.toJSON();
         $ionicLoading.show();
 
         Message.send($scope.message).then(function(response){
             $ionicLoading.hide();
             $scope.message = {
-                subject : '',
-                messageBody: '',
-                date: '',
-                sender: ''
-           };
+                subject: "",
+                messageBody: "",
+                sender: "",
+                date : ""
+            };
         }, function(response){
             $ionicLoading.hide();
         });

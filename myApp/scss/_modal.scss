@@ -1,0 +1,16 @@
+
+	.modal-backdrop-bg {
+		background: rgba(0,0,0,0.5);
+	}
+	#modal-custom {
+		min-height: 50%;
+		height: 50%;
+		top: 25%;
+		width: 80%;
+		margin-left: 10%; 
+
+		.bar {
+			background: rgba(0,0,0,0.8);
+			text-align: right;
+		}
+	}

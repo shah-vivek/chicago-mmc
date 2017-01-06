@@ -9102,27 +9102,30 @@ p {
     padding-left: 20px;
     background-color: #f2f2f3; }
 
+#mmc-sidemenu .micon-left {
+  float: left;
+  padding-right: 10px; }
+
 #login {
   /* background: #1c2627 url("../img/banner.jpg") no-repeat center center;*/
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  background-size: cover;
-  background-color: #F09819;
-  background: #FFB74D; }
+  background-size: cover; }
   #login .item-md-label .input-label {
-    color: white;
+    color: #F09819;
     opacity: 0.5; }
   #login .item-md-label input {
     background: none;
     border-bottom: #FF512F;
     font-size: 25px;
-    letter-spacing: 0; }
+    letter-spacing: 0;
+    color: #F09819; }
     #login .item-md-label input:focus {
       outline: none; }
   #login .item-md-label input.used ~ .input-label, #login .item-md-label input:focus ~ .input-label {
     opacity: 0.8;
-    color: white; }
+    color: #F09819; }
   #login .item-md-label .hightlight-calm {
     background: none; }
   #login .list > .item {
@@ -9130,11 +9133,16 @@ p {
   #login .scroll-content {
     display: table !important;
     width: 100% !important;
-    height: 100% !important; }
+    height: 100% !important;
+    padding: 0 !important; }
   #login form {
-    display: table-cell;
-    vertical-align: middle; }
+    display: table;
+    width: 100% !important;
+    height: 100% !important; }
     #login form .form-header {
+      display: table-caption;
+      background: #FFB74D;
+      padding: 30px 16px 16px 16px;
       text-align: center; }
       #login form .form-header .logo {
         width: 30%; }
@@ -9146,6 +9154,9 @@ p {
         text-shadow: none; }
       #login form .form-header h1 {
         margin-bottom: 0; }
+    #login form .login-form {
+      display: table-cell;
+      padding: 16px; }
   #login .header {
     padding-bottom: 20px; }
   #login .button-login {
@@ -9157,7 +9168,10 @@ p {
     opacity: inherit;
     background: #F09819; }
   #login .options {
-    color: white; }
+    color: #F09819;
+    padding: 0 16px 16px 16px; }
+  #login .padding {
+    padding: 0 !important; }
 
 #home .hero > .content {
   top: 60px; }
@@ -9394,3 +9408,16 @@ p {
 
 #membership .card {
   padding: 10px; }
+
+.modal-backdrop-bg {
+  background: rgba(0, 0, 0, 0.5); }
+
+#modal-custom {
+  min-height: 50%;
+  height: 50%;
+  top: 25%;
+  width: 80%;
+  margin-left: 10%; }
+  #modal-custom .bar {
+    background: rgba(0, 0, 0, 0.8);
+    text-align: right; }

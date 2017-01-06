@@ -4,11 +4,9 @@
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    background-color: $primary-color;
-    background: $light-primary-color;
 
     .item-md-label .input-label {
-        color: white;
+        color: $primary-color;
         opacity: 0.5;
     }
     .item-md-label input {
@@ -19,10 +17,11 @@
         &:focus {
             outline: none;
         }
+        color: $primary-color;
     }
     .item-md-label input.used~.input-label, .item-md-label input:focus~.input-label {
         opacity: 0.8;
-        color: white;
+        color: $primary-color;
     }
     .item-md-label .hightlight-calm {
         background: none;
@@ -35,11 +34,16 @@
         display: table !important;
         width: 100% !important;
         height: 100% !important;
+        padding: 0 !important;
     }
     form {
-        display: table-cell;
-        vertical-align: middle;
+        display: table;
+        width: 100% !important;
+        height: 100% !important;
         .form-header {
+            display: table-caption;
+            background: $light-primary-color;
+            padding: 30px 16px 16px 16px;
             text-align: center;
             .logo {
                 width: 30%;
@@ -54,6 +58,10 @@
             h1 {
                 margin-bottom: 0;
             }
+        }
+        .login-form {
+            display: table-cell;
+            padding: 16px;
         }
     }
 
@@ -71,6 +79,10 @@
         background: $primary-color;
     }
     .options {
-        color: white;
+        color: $primary-color;
+        padding: 0 16px 16px 16px;
+    }
+    .padding {
+        padding: 0!important;
     }
 }
