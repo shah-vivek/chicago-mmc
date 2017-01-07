@@ -137,7 +137,7 @@ angular.module('starter.controllers', [])
     }, 
     {
         id: 2,
-        name: "Memmbership",
+        name: "Membership",
         icon: "ion-person-add",
         level: 0,
         state: 'app.membership'
