@@ -104,7 +104,15 @@ angular.module('starter.controllers', [])
 
     $scope.theme = 'ionic-sidemenu-stable';
     $scope.tree =
-    [{
+    [
+    {
+        id: 0,
+        name: "Home",
+        icon: "ion-home",
+        level: 0,
+        state: 'app.home'
+    },
+    {
         id: 1,
         level: 0,
         name: 'About Us',
@@ -185,7 +193,7 @@ angular.module('starter.controllers', [])
             $ionicLoading.hide();
             if( response.data.userDetails ) {
                 localStorage.setItem( "user" , JSON.stringify(response.data.userDetails));
-                $state.go('app.mmc');
+                $state.go('app.home');
             } else {
                 $scope.modal.msg = response.data.status.statusMsg;
                 $scope.modal.show();
@@ -225,22 +233,28 @@ angular.module('starter.controllers', [])
     $scope.cpass = '';
 
     $scope.signup = function() {
-        $ionicLoading.show();
-        SignUp.enter($scope.user).then(function(response){
-            $ionicLoading.hide();
-            if(response.data.status == 'SUCCESS') {
-                localStorage.setItem('user' , JSON.stringify($scope.user));
-                $state.go('app.mmc');
-            } else {
-                $scope.modal.msg = response.data.statusMsg;
-                $scope.modal.show();
-            }
-        }, function(response){
+        if( $scope.cpass == $scope.user.pass ){
+            
+            $ionicLoading.show();
+            SignUp.enter($scope.user).then(function(response){
                 $ionicLoading.hide();
-                $scope.modal.msg = "Internal server error";
-                $scope.modal.show();
-        });
-    }
+                if(response.data.status == 'SUCCESS') {
+                    localStorage.setItem('user' , JSON.stringify($scope.user));
+                    $state.go('app.mmc');
+                } else {
+                    $scope.modal.msg = response.data.statusMsg;
+                    $scope.modal.show();
+                }
+            }, function(response){
+                    $ionicLoading.hide();
+                    $scope.modal.msg = "Internal server error";
+                    $scope.modal.show();
+            });
+        }else {
+            $scope.modal.msg = "Password do not match.";
+            $scope.modal.show();
+        }
+    };
 })
 
 .controller('EventCtrl', function($scope, $timeout, $stateParams,$state , $location , $ionicLoading  , Events ) {
