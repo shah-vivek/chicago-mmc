@@ -228,19 +228,20 @@ angular.module('starter.controllers', [])
         lastName: '',
         pass: '',
         email: '',
-        type: 'user'
+        type: 'user',
+        cpass: '',
+        pin: ''
     };
-    $scope.cpass = '';
 
     $scope.signup = function() {
-        if( $scope.cpass == $scope.user.pass ){
+        if( $scope.user.cpass.trim() == $scope.user.pass.trim() ){
             
             $ionicLoading.show();
             SignUp.enter($scope.user).then(function(response){
                 $ionicLoading.hide();
                 if(response.data.status == 'SUCCESS') {
                     localStorage.setItem('user' , JSON.stringify($scope.user));
-                    $state.go('app.mmc');
+                    $state.go('app.home');
                 } else {
                     $scope.modal.msg = response.data.statusMsg;
                     $scope.modal.show();
