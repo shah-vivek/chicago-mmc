@@ -1,15 +1,38 @@
 <ion-view view-title="Album" id="album">
     <ion-content>
-        <div class="list">
-            <div class="card card-gallery item item-text-wrap" ng-repeat="album in albums" ui-sref="app.gallery({id:album.albumId})">
-                
-                    <div class="ink">
-                        <img class="full-image" src="img/banner.jpg">
-                    </div>
-                    <div class="item ">
-                        <span>{{ album.albumName }}</span>
-                    </div>
-               
+        <div>
+            <button class="button button-block button-purple icon-right "
+                    ng-class="{'ion-chevron-right' : show , 'ion-chevron-down' : !show}"
+                     ng-click="show = !show">2016</button>
+            <div class="list" ng-if="show">
+                <div class="card card-gallery item item-text-wrap" ui-sref="app.gallery({id:album.albumId})">
+                    
+                        <div class="ink">
+                            <img class="full-image" src="img/banner.jpg">
+                        </div>
+                        <div class="item ">
+                            <span>Album 1</span>
+                        </div>
+                   
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <button class="button button-block button-purple icon-right "
+                    ng-class="{'ion-chevron-right' : show1 , 'ion-chevron-down' : !show1}"
+                     ng-click="show1 = !show1">2017</button>
+            <div class="list" ng-if="show1">
+                <div class="card card-gallery item item-text-wrap" ui-sref="app.gallery({id:album.albumId})">
+                    
+                        <div class="ink">
+                            <img class="full-image" src="img/banner.jpg">
+                        </div>
+                        <div class="item ">
+                            <span>Album 1</span>
+                        </div>
+                   
+                </div>
             </div>
         </div>
     </ion-content>

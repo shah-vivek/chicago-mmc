@@ -10,8 +10,12 @@
 		margin-left: 10%; 
 
 		.bar {
-			background: rgba(0,0,0,0.8);
+			background: $primary-color;
 			text-align: right;
+		}
+		.bar .title + .button:last-child {
+			top: 0;
+			bottom: 0;
 		}
 		.scroll {
 			position : relative;
@@ -24,10 +28,18 @@
 					width: 100%;
 					height: 100%;
 
-					p {
+					div {
 						display: table-cell;
 						vertical-align: middle;
 						text-align: center;
+
+						img {
+							width: 20px;
+							height: 20px;
+						}
+						p {
+							margin: 0;
+						}
 					}
 				}
 			}

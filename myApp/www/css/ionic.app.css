@@ -9429,8 +9429,11 @@ p {
   width: 80%;
   margin-left: 10%; }
   #modal-custom .bar {
-    background: rgba(0, 0, 0, 0.8);
+    background: #F09819;
     text-align: right; }
+  #modal-custom .bar .title + .button:last-child {
+    top: 0;
+    bottom: 0; }
   #modal-custom .scroll {
     position: relative; }
     #modal-custom .scroll .message-wrapper {
@@ -9441,7 +9444,12 @@ p {
         display: table;
         width: 100%;
         height: 100%; }
-        #modal-custom .scroll .message-wrapper .message-body p {
+        #modal-custom .scroll .message-wrapper .message-body div {
           display: table-cell;
           vertical-align: middle;
           text-align: center; }
+          #modal-custom .scroll .message-wrapper .message-body div img {
+            width: 20px;
+            height: 20px; }
+          #modal-custom .scroll .message-wrapper .message-body div p {
+            margin: 0; }

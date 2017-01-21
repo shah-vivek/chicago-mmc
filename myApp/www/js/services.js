@@ -5,7 +5,8 @@ angular.module('mmc.services', [])
 
 	this.enter = function( user ) {
 
-		return $http.post("http://custom-env.kmxz8htasr.us-west-2.elasticbeanstalk.com/login/",user);
+		//return $http.post("http://custom-env.kmxz8htasr.us-west-2.elasticbeanstalk.com/login/",user);
+		return $http.get("data/user.json");
 	};
 	
 })

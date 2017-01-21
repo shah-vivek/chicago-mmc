@@ -283,7 +283,14 @@ angular.module('starter.controllers', [])
     $ionicLoading.show();
     Events.get($stateParams.id).then(function(response){
         $scope.event = response.data;
-        var latLng = new google.maps.LatLng(41.7582711, -88.1910167);
+        
+        $ionicLoading.hide();
+
+    },function(error){
+        $ionicLoading.hide();
+    });
+
+    var latLng = new google.maps.LatLng(41.7582711, -88.1910167);
      
         var mapOptions = {
           center: latLng,
@@ -292,11 +299,6 @@ angular.module('starter.controllers', [])
         };
 
         $scope.map = new google.maps.Map(document.getElementById("map"), mapOptions);
-        $ionicLoading.hide();
-
-    },function(error){
-        $ionicLoading.hide();
-    });
 
     var options = {timeout: 10000, enableHighAccuracy: true};
  
@@ -328,15 +330,15 @@ angular.module('starter.controllers', [])
 
 .controller('AlbumCtrl', function($scope, $stateParams, $state, $timeout, $ionicLoading, Albums ) {
     
-    $ionicLoading.show();
-    Albums.get().then(function(response){
-        $scope.albums = response.data;
-        $ionicLoading.hide();
-    },function(error){
-        $ionicLoading.hide();
-    });
+    // $ionicLoading.show();
+    // Albums.get().then(function(response){
+    //     $scope.albums = response.data;
+    //     $ionicLoading.hide();
+    // },function(error){
+    //     $ionicLoading.hide();
+    // });
     $scope.albumSelected = function( album ) {
-        Albums.selectedAlbum = album.albumId;
+        //Albums.selectedAlbum = album.albumId;
         $state.go('app.gallery');
     };
 
@@ -345,21 +347,36 @@ angular.module('starter.controllers', [])
 
 .controller('GalleryCtrl', function($scope, $stateParams, $timeout, $ionicLoading, Albums ) {
 
-    $ionicLoading.show();
+    //$ionicLoading.show();
 
-    Albums.get($stateParams.id).then(function(response){
-        $scope.images = [];
-        var images = [];
-        var ob = { src : '' };
-        for( var i = 0 ; i < response.data.length ; i++) {
-            ob.src = "data:image/png;base64,"+response.data[i];
-            images.push( ob );
+    // Albums.get($stateParams.id).then(function(response){
+    //     $scope.images = [];
+    //     var images = [];
+    //     var ob = { src : '' };
+    //     for( var i = 0 ; i < response.data.length ; i++) {
+    //         ob.src = "data:image/png;base64,"+response.data[i];
+    //         images.push( ob );
+    //     }
+    //     $scope.images = images;
+    //     $ionicLoading.hide();
+    // },function(error){
+    //     $ionicLoading.hide();
+    // });
+
+    $scope.images = [
+        {
+            src : 'http://www.mahamandalchicago.org/wp-content/gallery/gudhipadwa_2016/DSC_0065.JPG'
+        },
+        {
+            src: 'http://www.mahamandalchicago.org/wp-content/gallery/gudhipadwa_2016/DSC_0066.JPG'
+        },
+        {
+            src: 'http://www.mahamandalchicago.org/wp-content/gallery/gudhipadwa_2016/DSC_0067.JPG'
+        },
+        {
+            src: 'http://www.mahamandalchicago.org/wp-content/gallery/gudhipadwa_2016/DSC_0068.JPG'
         }
-        $scope.images = images;
-        $ionicLoading.hide();
-    },function(error){
-        $ionicLoading.hide();
-    });
+    ];
 
   
 })
