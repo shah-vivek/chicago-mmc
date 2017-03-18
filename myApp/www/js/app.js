@@ -1,12 +1,36 @@
+var pushRegistered = false;
+var pushToken = null;
+var envURL = 'http://localhost:8081/';
 // Ionic Starter App
 
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'ui.router' , 'starter.controllers',  'ionic-sidemenu' , 'ionMdInput',  'mmc.services' , 'mmc.directives', 'ion-gallery'])
+angular.module('starter', ['ionic.cloud','ionic', 'ui.router' , 'starter.controllers',  'ionic-sidemenu' , 'ionMdInput',  'mmc.services' , 'mmc.directives', 'ion-gallery'])
+.service('URLConfig', function(){
+    var URLConfig = {
+        authentication : {
+            login : envURL+'login/',
+            signUp : envURL+'members/signup/'
+        },
+        events : {
+            getEvent : envURL + 'events/get?eventId=',
+            getEventList : envURL + 'events/list/',
+        },
+        albums : {
+            base : envURL + 'album/',
+            getAlbumList : envURL + 'album/year/list',
+        },
+        messages : {
+            sendMessage : envURL + 'message/send/'
+        }
+    };
 
-.run(function($ionicPlatform , $state, $rootScope, Login) {
+
+    return URLConfig;
+})
+.run(function($ionicPlatform , $state, $rootScope, Login, $ionicPush) {
     $ionicPlatform.ready(function() {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
@@ -29,9 +53,34 @@ angular.module('starter', ['ionic', 'ui.router' , 'starter.controllers',  'ionic
                 
             });
         }
+        $ionicPush.register().then(function(t) {
+            return $ionicPush.saveToken(t);
+        }).then(function(t) {
+
+            window.pushRegistered = true;
+            window.pushToken = t.token;
+        })
     });
 })
-
+.config(function($ionicCloudProvider) {
+  $ionicCloudProvider.init({
+    "core": {
+      "app_id": "25b76a82"
+    },
+    "push": {
+      "sender_id": "1052985078162",
+      "pluginConfig": {
+        "ios": {
+          "badge": true,
+          "sound": true
+        },
+        "android": {
+          "iconColor": "#343434"
+        }
+      }
+    }
+  });
+})
 .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 
     // Turn off caching for demo simplicity's sake
@@ -121,7 +170,7 @@ angular.module('starter', ['ionic', 'ui.router' , 'starter.controllers',  'ionic
     })
 
     .state('app.gallery', {
-        url: '/gallery/:id',
+        url: '/:year/gallery/:id',
         views: {
             'menuContent': {
                 templateUrl: 'templates/gallery.html',

@@ -1,61 +1,61 @@
 
 angular.module('mmc.services', [])
 
-.service('Login',function ( $http) {
+.service('Login',function ( $http, URLConfig) {
 
 	this.enter = function( user ) {
 
-		//return $http.post("http://custom-env.kmxz8htasr.us-west-2.elasticbeanstalk.com/login/",user);
-		return $http.get("data/user.json");
+		return $http.post(URLConfig.authentication.login,user);
+		
 	};
 	
 })
-.service('SignUp',function ( $http) {
+.service('SignUp',function ( $http, URLConfig) {
 
 	this.enter = function( user ) {
 
-		return $http.post("http://custom-env.kmxz8htasr.us-west-2.elasticbeanstalk.com/members/signup",user);
+		return $http.post(URLConfig.authentication.signUp,user);
 	};
 	
 })
-.service('Events', function( $http ){
+.service('Events', function( $http, URLConfig ){
 	
 	this.get = function( id ) {
 		
 		if( id ) {
 			
-			return $http.get("http://custom-env.kmxz8htasr.us-west-2.elasticbeanstalk.com/events/get?eventId="+id);
+			return $http.get(URLConfig.events.getEvent+id);
 
 
 		} else {
 
-			return $http.get("http://custom-env.kmxz8htasr.us-west-2.elasticbeanstalk.com/events/list");
+			return $http.get(URLConfig.events.getEventList);
 		}
 	};
 
 	this.selectedEvent = null;
 })
-.service('Albums', function( $http ){
+.service('Albums', function( $http, URLConfig ){
 	
-	this.get = function( id ) {
+	this.get = function( year, id ) {
 		
 		if( id ) {
 			
-			return $http.get("http://custom-env.kmxz8htasr.us-west-2.elasticbeanstalk.com/archive/album/"+id);
+			return $http.get(URLConfig.albums.base+year+'/'+id);
 
 
 		} else {
 
-			return $http.get("http://custom-env.kmxz8htasr.us-west-2.elasticbeanstalk.com/album");
+			return $http.get(URLConfig.albums.getAlbumList);
 		}
 	};
 
 	this.selectedAlbum = null;
 })
-.service('Message', function( $http ){
+.service('Message', function( $http, URLConfig ){
 
 	this.send = function( message ) {
 
-		return $http.post("http://custom-env.kmxz8htasr.us-west-2.elasticbeanstalk.com/message/send", message);
+		return $http.post(URLConfig.messages.sendMessage, message);
 	};
 });

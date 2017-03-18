@@ -3,31 +3,31 @@
         <div class="hero" style="background-image: url('img/home-banner.jpg');">
         </div>
         <div class="event-card">
-            <h2 class="event-title">सूर निरागस हो</h2>
+            <h2 class="event-title">{{event.eventName}}</h2>
 
-            <p class="event-description">महेश काळे हा शास्त्रीय आणि पार्श्वसंगीताच्या क्षितिजावर उगवलेला नवीन तेजस्वी तारा आहे. कट्यार काळजात घुसली या चित्रपटातल्या गायनाने त्यांना लोकप्रियतेच्या शिखरावर नेले आणि अतिशय प्रतिष्ठेचा चित्रपट पार्श्वगायनाचा राष्ट्रीय पुरस्कारही मिळवून दिला. महेश काळे यांच्याबद्दल परदेशस्थ विशेषतः अमेरिकेतील मराठी माणसाला अधिक आपुलकी आणि अभिमान वाटणं, अगदी साहजिक आहे, कारण महेश काळे त्यांच्यासारखाच भारतात अभियांत्रिकी स्नातक पदवी (Bachelor’s degree in Engineering) आणि नंतर अमेरिकेत उच्चशिक्षण (Master’s degree) आणि वास्तव्य असा प्रवास आपल्यापैकी अनेकांनी केला आहे. महेश काळे यांचं वैशिष्ट्य असं की, अशी उच्चशिक्षणाची पार्श्वभूमी असूनही पुरुषोत्तम गांगुर्डे, पंडित जितेंद्र अभिषेकी यांच्यासारख्या गुरुजनांकडून मिळालेली संगीतकला त्यांनी निष्ठेने जोपासली आणि यशाचे शिखर गाठले. अमेरिकेत राहून भारतात संगीतक्षेत्रात यशस्वी होणं हि सोपी गोष्ट नाही. नाट्य / चित्रपट संगीत, शास्त्रीय  व सुगम संगीत, अभंग, गझल अशा विविध संगीतप्रकारांनी भरलेल्या ‘सूर निरागस हो ‘ या कार्यक्रमातून महेश काळे यांचा संगीतप्रवास आपल्यापुढे येईल. संगीतप्रेमींसाठी का कार्यक्रम म्हणजे एक पर्वणी असणार आहे. याचबरोबर साथीला प्रथितयश पंडित श्याम काणे आणि केदार नाफडे हे देखील असतील. हा एक केशरयुक्त दुग्धशर्करा योगच म्हणावा लागेल</p>
+            <p class="event-description">{{event.eventDescription}}</p>
 
             <p class="event-time">
                 <div class="calendar">
                     <div class="date-col"> 
-                        <div class="year-row">2017</div>
-                        <div class="date-row">21</div>
-                        <div class="month-row">01</div>
-                        <div class="time-row">15:00</div>
+                        <div class="year-row">{{startDateInfo.year}}</div>
+                        <div class="date-row">{{startDateInfo.date}}</div>
+                        <div class="month-row">{{startDateInfo.month}}</div>
+                        <div class="time-row">{{startDateInfo.hours}}:{{startDateInfo.minutes}}</div>
                     </div>
                 </div>
                 <span><i>to</i></span>
                 <div class="calendar">
                     <div class="date-col"> 
-                        <div class="year-row">2017</div>
-                        <div class="date-row">21</div>
-                        <div class="month-row">01</div>
-                        <div class="time-row">22:00</div>
+                        <div class="year-row">{{startDateInfo.year}}</div>
+                        <div class="date-row">{{startDateInfo.date}}</div>
+                        <div class="month-row">{{startDateInfo.month}}</div>
+                        <div class="time-row">{{startDateInfo.hours}}:{{startDateInfo.minutes}}</div>
                     </div>
                 </div>
             </p>
             <p class="event-venue">
-                <span class="ion-location"></span> <span>Yellow Box – 1635 Emerson Ln, Naperville, IL 60540</span>
+                <span class="ion-location"></span> <span>{{event.eventVenue}}</span>
             </p>
 
             <p class="button-para">

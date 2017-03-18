@@ -3,13 +3,15 @@
 
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $ionicPopover, $state, $timeout ) {
+.controller('AppCtrl', function($scope, $ionicModal, $ionicPopover, $state, $timeout, $ionicPush ) {
     // Form data for the login modal
+
+    var userInfo = JSON.parse(localStorage.getItem('user'));
     $scope.loginData = {};
     $scope.isExpanded = false;
     $scope.hasHeaderFabLeft = false;
     $scope.hasHeaderFabRight = false;
-
+    $scope.userName = userInfo.firstName + ' ' + userInfo.lastName;
     var navIcons = document.getElementsByClassName('ion-navicon');
     for (var i = 0; i < navIcons.length; i++) {
         navIcons.addEventListener('click', function() {
@@ -269,11 +271,6 @@ angular.module('starter.controllers', [])
         });
        
 
-       $scope.eventSelected = function( event ) {
-            Events.selectedEvent = event;
-            $state.go('app.eventdetails');
-       };
-
         
 })
 
@@ -282,8 +279,23 @@ angular.module('starter.controllers', [])
 
     $ionicLoading.show();
     Events.get($stateParams.id).then(function(response){
-        $scope.event = response.data;
-        
+        var event = $scope.event = response.data;
+        var startDateObj = new Date(event.eventStart);
+        var endDateObj = new Date(event.eventEnd);
+        $scope.startDateInfo = {
+            year : startDateObj.getFullYear(),
+            date : startDateObj.getDate(),
+            month : startDateObj.getMonth()+1,
+            hours : startDateObj.getHours(),
+            minutes : startDateObj.getMinutes()
+        };
+        $scope.endDateInfo = {
+            year : endDateObj.getFullYear(),
+            date : endDateObj.getDate(),
+            month : endDateObj.getMonth()+1,
+            hours : endDateObj.getHours(),
+            minutes : endDateObj.getMinutes()
+        };
         $ionicLoading.hide();
 
     },function(error){
@@ -319,7 +331,11 @@ angular.module('starter.controllers', [])
 
 
 .controller('HomeCtrl', function($scope, $stateParams, $timeout ) {
-   
+   if(window.pushRegistered === true){
+       $scope.message = window.pushToken;
+   }else{
+       $scope.message = "Push did not work";
+   }
 
     
 })
@@ -330,55 +346,42 @@ angular.module('starter.controllers', [])
 
 .controller('AlbumCtrl', function($scope, $stateParams, $state, $timeout, $ionicLoading, Albums ) {
     
-    // $ionicLoading.show();
-    // Albums.get().then(function(response){
-    //     $scope.albums = response.data;
-    //     $ionicLoading.hide();
-    // },function(error){
-    //     $ionicLoading.hide();
-    // });
-    $scope.albumSelected = function( album ) {
-        //Albums.selectedAlbum = album.albumId;
-        $state.go('app.gallery');
-    };
+    $ionicLoading.show();
+    Albums.get().then(function(response){
+        var albumYearColl = $scope.albumYearColl = response.data;
+        var yearsOpen = $scope.yearsOpen = {};
+        albumYearColl.forEach(function(albumYearInfo){
+            yearsOpen[albumYearInfo.yearNumber] = false; 
+        });
+        $scope.closeYear = function(year){
+            yearsOpen[year] = !yearsOpen[year];
+        }
+
+
+        $ionicLoading.hide();
+    },function(error){
+        $ionicLoading.hide();
+    });
+   
 
     
 })
 
 .controller('GalleryCtrl', function($scope, $stateParams, $timeout, $ionicLoading, Albums ) {
 
-    //$ionicLoading.show();
+    $ionicLoading.show();
 
-    // Albums.get($stateParams.id).then(function(response){
-    //     $scope.images = [];
-    //     var images = [];
-    //     var ob = { src : '' };
-    //     for( var i = 0 ; i < response.data.length ; i++) {
-    //         ob.src = "data:image/png;base64,"+response.data[i];
-    //         images.push( ob );
-    //     }
-    //     $scope.images = images;
-    //     $ionicLoading.hide();
-    // },function(error){
-    //     $ionicLoading.hide();
-    // });
-
-    $scope.images = [
-        {
-            src : 'http://www.mahamandalchicago.org/wp-content/gallery/gudhipadwa_2016/DSC_0065.JPG'
-        },
-        {
-            src: 'http://www.mahamandalchicago.org/wp-content/gallery/gudhipadwa_2016/DSC_0066.JPG'
-        },
-        {
-            src: 'http://www.mahamandalchicago.org/wp-content/gallery/gudhipadwa_2016/DSC_0067.JPG'
-        },
-        {
-            src: 'http://www.mahamandalchicago.org/wp-content/gallery/gudhipadwa_2016/DSC_0068.JPG'
-        }
-    ];
-
-  
+    Albums.get($stateParams.year, $stateParams.id).then(function(response){
+        $scope.images = response.data.albumImagePaths.map(function(imagePath){
+            return { 
+                src : imagePath,
+                sub : ''
+            }
+        });
+        $ionicLoading.hide();
+    },function(error){
+        $ionicLoading.hide();
+    });
 })
 
 .controller('ContactCtrl', function($scope, $stateParams, $timeout, $ionicLoading, Message) {
