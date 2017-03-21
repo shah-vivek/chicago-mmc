@@ -11,8 +11,12 @@
                     <div class="login-form">
                         <div class="list">
                             <label class="item item-input">
-                                <input class="item-input-custom" type="text" placeholder="Email" ng-model="user.email" ng-required="true">
+                                <input name="email"  class="item-input-custom" type="email" placeholder="Email" ng-model="user.email" ng-required="true">
                             </label>
+                            <p ng-show="form.email.$touched && form.email.$error.email" class="item item-input assertive">
+                                Please enter a valid Email Id
+                            </p>
+                        
                             <label class="item item-input">
                                 <input class="item-input-custom" type="password" placeholder="Password" ng-model="user.password" ng-required="true">
                             </label>

@@ -1,6 +1,6 @@
 <ion-view class="login" hide-nav-bar="true">
     <ion-content>
-        <form name="form">
+        <form novalidate name="form">
             <div class="form-header">
                 <img class="logo" src="img/ganesha.svg">
                 <h1>महाराष्ट्र मंडळ</h1><h2> शिकागो</h2>
@@ -10,24 +10,56 @@
 
                     <div class="login-form">
                         <div class="list">
+                            
                             <label class="item item-input">
-                                <input class="item-input-custom" type="text" placeholder="First name" ng-model="user.firstName" ng-required="true">
+                                <input class="item-input-custom" type="text" pattern="^[a-zA-Z]+$" name ="firstname" placeholder="First name" ng-model="user.firstName" required>
                             </label>
+                            <div>
+                                <p ng-show= "form.firstname.$touched && form.firstname.$error.required" class="item assertive">Firstname is required</p>
+                                <p ng-show= "form.firstname.$error.pattern" class="item assertive">Firstname should only contain alphabetical Characters</p>
+                            </div>
+                            
+                            
                             <label class="item item-input">
-                                <input class="item-input-custom" type="text" placeholder="Last name" ng-model="user.lastName" ng-required="true">
+                                <input name="lastname" class="item-input-custom" type="text" placeholder="Last name" ng-model="user.lastName" required>
                             </label>
+                            <div>
+                                <p ng-show= "form.lastname.$touched && form.lastname.$error.required" class="item assertive">Lastname is required</p>
+                                <p ng-show= "form.lastname.$error.pattern" class="item assertive">Lastname should only contain alphabetical Characters</p>
+                            </div>
                             <label class="item item-input">
-                                <input class="item-input-custom" type="text" placeholder="Email" ng-model="user.email" ng-required="true">
+                                <input name="email" class="item-input-custom" type="email"  placeholder="Email" ng-model="user.email" required>
                             </label>
+                            <div>
+                                <p ng-show= "form.email.$touched && form.email.$error.required" class="item assertive">Email Id is required</p>
+                                <p ng-show= "form.email.$error.email" class="item assertive">Please enter a valid email Id</p>
+                            </div>
                             <label class="item item-input">
-                                <input class="item-input-custom" type="password" placeholder="Password" ng-model="user.pass" ng-required="true">
+                                <input name="password" class="item-input-custom" minlength="8" maxlength="30" type="password" placeholder="Password" ng-model="user.pass" required="true">
                             </label>
+                            <div>
+                                <p ng-show= "form.password.$touched && form.password.$error.required" class="item assertive">Please enter a password</p>
+                                <p ng-show= "form.password.$error.minlength" class="item assertive">Please enter a password continaing atleast 8 characters</p>
+                                <p ng-show= "form.password.$error.maxlength" class="item assertive">The maximum length of a passsword cannot be more than 30</p>
+                            </div>
                             <label class="item item-input">
-                                <input class="item-input-custom" type="password" placeholder="Confirm password" ng-model="user.cpass" ng-required="true">
+                                <input name="confirm_password" compare-to = "user.pass" class="item-input-custom" type="password" placeholder="Confirm password" ng-model="user.cpass" required="true">
                             </label>
+                            <div>
+                                
+                                <p ng-show= "form.confirm_password.$touched && form.confirm_password.$error.compareTo" class="item assertive">Passwords did not match</p>
+                                
+                                
+                            </div>
                             <label class="item item-input">
-                                <input class="item-input-custom" type="password" placeholder="Security pin" ng-model="user.pin" ng-required="true"><sup>*<sup>
+                                <input name="pin" class="item-input-custom" type="password" placeholder="Security pin" minlength="4"  maxlength="4" ng-model="user.pin" required><sup>*<sup>
                             </label>
+                            <div>
+                                <p ng-show= "form.pin.$touched && form.pin.$error.required" class="item assertive">Security PIN is required</p>
+                                <p ng-show= "form.pin.$error.minlength" class="item assertive">Please enter a PIN continaing 4 characters</p>
+                                
+                            </div>
+                            
                         </div>
                         <div><sup>*</sup><i>Security pin will be used to recover you password.</i></div>
 

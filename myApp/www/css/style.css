@@ -1,16 +1,11 @@
-/* General
-==================================*/
-:root {
-   --dark-primary-color: #FFA000;
-   --primary-color: #FFC107;
-   --light-primary-color: #FFECB3;
-   --text-primary-color : #212121;
-   --accent-color: #8BC34A;
-   --primary-text-color: #212121;
-   --secondary-text-color: #757575;
-   --divider-color: #BDBDBD;
-}
 
+.login form .login-form input[type="email"]{
+    border-bottom: 1px solid #BDBDBD !important; 
+}
+.login form .login-form input[type="email"]:hover{
+    border-bottom: 2px solid #BDBDBD !important;
+    font-weight: bold;
+}
 
 
 
