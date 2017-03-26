@@ -165,18 +165,11 @@ angular.module('starter.controllers', [])
         icon: "ion-images",
         level: 0,
         state: 'app.album'
-    },
-    {
-        id: 5,
-        name: "Contact Us",
-        icon: "ion-at",
-        level: 0,
-        state: 'app.contact'
     }];
     
 })
 .controller('LoginCtrl', function($scope, $timeout, $state, $stateParams, $ionicLoading, $ionicModal, Login) {
-
+    
     $ionicModal.fromTemplateUrl('custom-modal.html', {
         scope: $scope,
         animation: 'slide-in-up'
@@ -319,7 +312,7 @@ angular.module('starter.controllers', [])
         
 
         $scope.open = function() {
-            window.open('http://shop.mahamandalchicago.org/main.sc' , '_blank');
+            window.open('https://www.tugoz.com/mmc/' , '_blank');
         };
      
       

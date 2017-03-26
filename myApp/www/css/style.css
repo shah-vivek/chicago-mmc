@@ -7,6 +7,20 @@
     font-weight: bold;
 }
 
+.event-plan{
+    border: 2px solid red;
+}
+.event-plan .second-column, .event-plan .first-column{
+     border: 1px solid #bbbbbb;
+     padding : 5px 10px;
+} 
+.event-plan .first-column{
+    width: 30%;
+}
+
+.event-plan .second-column{
+    width: 70%;
+}
 
 
 

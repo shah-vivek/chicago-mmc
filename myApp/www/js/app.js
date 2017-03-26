@@ -1,6 +1,6 @@
 var pushRegistered = false;
 var pushToken = null;
-var envURL = 'http://localhost:8081/';
+var envURL = 'http://mahamandalchicagomobile.org/mmc/';
 // Ionic Starter App
 
 // angular.module is a global place for creating, registering and retrieving Angular modules
@@ -238,5 +238,12 @@ angular.module('starter', ['ionic.cloud','ionic', 'ui.router' , 'starter.control
     });
 
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/login');
+    $urlRouterProvider.otherwise(function($injector, $location){
+       if(localStorage.getItem("user") && JSON.parse(localStorage.getItem("user")).email){
+            $location.path('/app/home')
+       }
+       else{
+           $location.path('/login');
+       }
+    });
 });
