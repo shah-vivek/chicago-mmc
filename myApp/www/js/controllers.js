@@ -100,7 +100,7 @@ angular.module('starter.controllers', [])
       }).then(function(modal) {
         $scope.modal = modal;
     });
-    
+
 })
 .controller('SideMenuCtrl', function($scope ) {
 
@@ -144,7 +144,7 @@ angular.module('starter.controllers', [])
                 items: null,
                 state: 'app.committee'
               }]
-    }, 
+    },
     {
         id: 2,
         name: "Membership",
@@ -166,10 +166,10 @@ angular.module('starter.controllers', [])
         level: 0,
         state: 'app.album'
     }];
-    
+
 })
 .controller('LoginCtrl', function($scope, $timeout, $state, $stateParams, $ionicLoading, $ionicModal, Login) {
-    
+
     $ionicModal.fromTemplateUrl('custom-modal.html', {
         scope: $scope,
         animation: 'slide-in-up'
@@ -199,10 +199,10 @@ angular.module('starter.controllers', [])
             $scope.modal.show();
         });
     };
-    
+
 })
 .controller('MembershipCtrl', function($scope, $timeout, $stateParams) {
-    
+
 
     $scope.open = function() {
         window.open('http://shop.mahamandalchicago.org/main.sc' , '_blank');
@@ -210,7 +210,7 @@ angular.module('starter.controllers', [])
 })
 
 .controller('SignUpCtrl', function($scope, $timeout, $stateParams, $ionicModal , $ionicLoading, $state , SignUp) {
-    
+
      $ionicModal.fromTemplateUrl('custom-modal.html', {
         scope: $scope,
         animation: 'slide-in-up'
@@ -230,7 +230,7 @@ angular.module('starter.controllers', [])
 
     $scope.signup = function() {
         if( $scope.user.cpass.trim() == $scope.user.pass.trim() ){
-            
+
             $ionicLoading.show();
             SignUp.enter($scope.user).then(function(response){
                 $ionicLoading.hide();
@@ -262,9 +262,9 @@ angular.module('starter.controllers', [])
         },function(error){
             $ionicLoading.hide();
         });
-       
 
-        
+
+
 })
 
 
@@ -273,22 +273,21 @@ angular.module('starter.controllers', [])
     $ionicLoading.show();
     Events.get($stateParams.id).then(function(response){
         var event = $scope.event = response.data;
-        var startDateObj = new Date(event.eventStart);
-        var endDateObj = new Date(event.eventEnd);
-        $scope.startDateInfo = {
-            year : startDateObj.getFullYear(),
-            date : startDateObj.getDate(),
-            month : startDateObj.getMonth()+1,
-            hours : startDateObj.getHours(),
-            minutes : startDateObj.getMinutes()
+        var getTimeInfo = function (dateStr){
+              var dateArr = dateStr.split('T')[0].split('-');
+              var timeArr = dateStr.split('T')[1].split('.')[0].split(':');
+              var info = {
+                      year : dateArr[0],
+                      month : dateArr[1],
+                      date : dateArr[2],
+                      hours : timeArr[0],
+                      minutes :  timeArr[1],
+                      sec : timeArr[2]
+              	}
+              return info;
         };
-        $scope.endDateInfo = {
-            year : endDateObj.getFullYear(),
-            date : endDateObj.getDate(),
-            month : endDateObj.getMonth()+1,
-            hours : endDateObj.getHours(),
-            minutes : endDateObj.getMinutes()
-        };
+        $scope.startDateInfo = getTimeInfo(event.eventStart);
+        $scope.endDateInfo = getTimeInfo(event.eventEnd);
         $ionicLoading.hide();
 
     },function(error){
@@ -296,7 +295,7 @@ angular.module('starter.controllers', [])
     });
 
     var latLng = new google.maps.LatLng(41.7582711, -88.1910167);
-     
+
         var mapOptions = {
           center: latLng,
           zoom: 15,
@@ -306,20 +305,20 @@ angular.module('starter.controllers', [])
         $scope.map = new google.maps.Map(document.getElementById("map"), mapOptions);
 
     var options = {timeout: 10000, enableHighAccuracy: true};
- 
-   
- 
-        
+
+
+
+
 
         $scope.open = function() {
             window.open('https://www.tugoz.com/mmc/' , '_blank');
         };
-     
-      
+
+
 })
 
 .controller('NotificationsCtrl', function($scope, $stateParams, $timeout ) {
-   
+
 })
 
 
@@ -330,21 +329,21 @@ angular.module('starter.controllers', [])
        $scope.message = "Push did not work";
    }
 
-    
+
 })
 
 .controller('MmcCtrl', function($scope, $stateParams, $timeout ) {
-   
+
 })
 
 .controller('AlbumCtrl', function($scope, $stateParams, $state, $timeout, $ionicLoading, Albums ) {
-    
+
     $ionicLoading.show();
     Albums.get().then(function(response){
         var albumYearColl = $scope.albumYearColl = response.data;
         var yearsOpen = $scope.yearsOpen = {};
         albumYearColl.forEach(function(albumYearInfo){
-            yearsOpen[albumYearInfo.yearNumber] = false; 
+            yearsOpen[albumYearInfo.yearNumber] = false;
         });
         $scope.closeYear = function(year){
             yearsOpen[year] = !yearsOpen[year];
@@ -355,9 +354,9 @@ angular.module('starter.controllers', [])
     },function(error){
         $ionicLoading.hide();
     });
-   
 
-    
+
+
 })
 
 .controller('GalleryCtrl', function($scope, $stateParams, $timeout, $ionicLoading, Albums ) {
@@ -366,7 +365,7 @@ angular.module('starter.controllers', [])
 
     Albums.get($stateParams.year, $stateParams.id).then(function(response){
         $scope.images = response.data.albumImagePaths.map(function(imagePath){
-            return { 
+            return {
                 src : imagePath,
                 sub : ''
             }
@@ -387,7 +386,7 @@ angular.module('starter.controllers', [])
     };
 
    $scope.send = function () {
-        
+
         $scope.date = new Date();
         $scope.message.sender = JSON.parse(localStorage.getItem('user')).email;
         $scope.message.date = $scope.date.toJSON();
@@ -406,28 +405,28 @@ angular.module('starter.controllers', [])
         });
 
    };
-  
+
 
 })
 
 .controller('CartCtrl', function($scope, $stateParams, $timeout) {
 
    $scope.items = Cart.get();
-   
+
 })
 
 .controller('PresidentCtrl', function($scope, $stateParams, $timeout  ) {
 
 
-   
-   
+
+
 })
 
 .controller('TicketsCtrl', function($scope, $stateParams, $timeout  ) {
 
 
-   
-   
+
+
 })
 
 .controller('CommitteeCtrl', function($scope, $stateParams, $timeout ) {

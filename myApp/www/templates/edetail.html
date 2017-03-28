@@ -7,20 +7,20 @@
 
             <p class="event-time">
                 <div class="calendar">
-                    <div class="date-col"> 
-                        <div class="year-row">{{startDateInfo.year}}</div>
-                        <div class="date-row">{{startDateInfo.date}}</div>
-                        <div class="month-row">{{startDateInfo.month}}</div>
-                        <div class="time-row">{{startDateInfo.hours}}:{{startDateInfo.minutes}}</div>
+                    <div class="date-col">
+                      <div class="year-row">{{event.eventStart | date : 'yyyy'}}</div>
+                      <div class="date-row">{{event.eventStart | date : 'dd'}}</div>
+                      <div class="month-row">{{event.eventStart | date : 'MM'}}</div>
+                      <div class="time-row">{{event.eventStart | date : 'hh'}}:{{event.eventStart | date : 'mm'}}</div>
                     </div>
                 </div>
                 <span><i>to</i></span>
                 <div class="calendar">
-                    <div class="date-col"> 
-                        <div class="year-row">{{startDateInfo.year}}</div>
-                        <div class="date-row">{{startDateInfo.date}}</div>
-                        <div class="month-row">{{startDateInfo.month}}</div>
-                        <div class="time-row">{{startDateInfo.hours}}:{{startDateInfo.minutes}}</div>
+                    <div class="date-col">
+                        <div class="year-row">{{event.eventEnd | date : 'yyyy'}}</div>
+                        <div class="date-row">{{event.eventEnd | date : 'dd'}}</div>
+                        <div class="month-row">{{event.eventEnd | date : 'MM'}}</div>
+                        <div class="time-row">{{event.eventEnd | date : 'hh'}}:{{event.eventEnd | date : 'mm'}}</div>
                     </div>
                 </div>
             </p>
@@ -32,10 +32,10 @@
                <a class="button button-purple button-round " href="#" ng-click="open()">
                     Buy Tickets
                 </a>
-            </p>   
+            </p>
         </div>
         <div id="map">
-               
-        </div> 
+
+        </div>
     </ion-content>
 </ion-view>
