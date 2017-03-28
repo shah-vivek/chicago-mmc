@@ -10,7 +10,7 @@
 
                     <div class="login-form">
                         <div class="list">
-                            
+
                             <label class="item item-input">
                                 <input class="item-input-custom" type="text" pattern="^[a-zA-Z]+$" name ="firstname" placeholder="First name" ng-model="user.firstName" required>
                             </label>
@@ -18,8 +18,8 @@
                                 <p ng-show= "form.firstname.$touched && form.firstname.$error.required" class="item assertive">Firstname is required</p>
                                 <p ng-show= "form.firstname.$error.pattern" class="item assertive">Firstname should only contain alphabetical Characters</p>
                             </div>
-                            
-                            
+
+
                             <label class="item item-input">
                                 <input name="lastname" class="item-input-custom" type="text" placeholder="Last name" ng-model="user.lastName" required>
                             </label>
@@ -46,10 +46,10 @@
                                 <input name="confirm_password" compare-to = "user.pass" class="item-input-custom" type="password" placeholder="Confirm password" ng-model="user.cpass" required="true">
                             </label>
                             <div>
-                                
+
                                 <p ng-show= "form.confirm_password.$touched && form.confirm_password.$error.compareTo" class="item assertive">Passwords did not match</p>
-                                
-                                
+
+
                             </div>
                             <label class="item item-input">
                                 <input name="pin" class="item-input-custom" type="password" placeholder="Security pin" minlength="4"  maxlength="4" ng-model="user.pin" required><sup>*<sup>
@@ -57,11 +57,11 @@
                             <div>
                                 <p ng-show= "form.pin.$touched && form.pin.$error.required" class="item assertive">Security PIN is required</p>
                                 <p ng-show= "form.pin.$error.minlength" class="item assertive">Please enter a PIN continaing 4 characters</p>
-                                
+
                             </div>
-                            
+
                         </div>
-                        <div><sup>*</sup><i>Security pin will be used to recover you password.</i></div>
+                        <div><sup>*</sup><i>Security pin will be used to recover your password.</i></div>
 
                         <button class="button button-block button-login icon-right ion-chevron-right" ng-click="signup()" ng-disabled="form.$invalid">
                             Sign Up
