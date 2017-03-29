@@ -247,7 +247,7 @@ angular.module('starter.controllers', [])
                     $scope.modal.show();
             });
         }else {
-            $scope.modal.msg = "Password do not match.";
+            $scope.modal.msg = "Passwords do not match.";
             $scope.modal.show();
         }
     };
