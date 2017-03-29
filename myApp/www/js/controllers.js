@@ -205,7 +205,7 @@ angular.module('starter.controllers', [])
 
 
     $scope.open = function() {
-        window.open('http://shop.mahamandalchicago.org/main.sc' , '_blank');
+        cordova.InAppBrowser.open('http://shop.mahamandalchicago.org/main.sc' , '_blank');
     };
 })
 
@@ -307,11 +307,8 @@ angular.module('starter.controllers', [])
     var options = {timeout: 10000, enableHighAccuracy: true};
 
 
-
-
-
         $scope.open = function() {
-            window.open('https://www.tugoz.com/mmc/' , '_blank');
+            cordova.InAppBrowser.open('https://www.tugoz.com/mmc/' , '_blank');
         };
 
 
