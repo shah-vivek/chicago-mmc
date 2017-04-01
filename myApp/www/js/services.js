@@ -58,4 +58,12 @@ angular.module('mmc.services', [])
 
 		return $http.post(URLConfig.messages.sendMessage, message);
 	};
+})
+.service('Authenticate', function($http, URLConfig){
+	this.verifyPin = function(pinInfo){
+		return $http.post(URLConfig.authentication.verifyPin, pinInfo);  
+	}
+	this.resetPassword = function(passInfo){
+		return $http.post(URLConfig.authentication.resetPassword, passInfo);
+	};
 });

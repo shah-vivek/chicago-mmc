@@ -19,6 +19,7 @@
         <ion-header-bar class="dark-bg expanded">
             <span class="avatar" style="background: url('img/banner.jpg'); background-size: cover;background-position-x: 50%;"></span>
             <h2>{{userName}}</h2>
+            <button class="button button-clear ion-log-out log-out-button" data-ng-click="logout()">Log Out</button>
         </ion-header-bar>
         <ion-content class="has-expanded-header" ng-controller="SideMenuCtrl">
             <ion-list id="mmc-sidemenu">

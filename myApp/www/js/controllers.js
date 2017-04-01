@@ -102,10 +102,13 @@ angular.module('starter.controllers', [])
     });
 
 })
-.controller('SideMenuCtrl', function($scope ) {
-
+.controller('SideMenuCtrl', function($scope, $state ) {
+    $scope.logout = function(){
+        localStorage.removeItem("user");
+        $state.go('login');
+    };
     $scope.theme = 'ionic-sidemenu-stable';
-    $scope.tree =
+    $scope.tree = 
     [
     {
         id: 0,
@@ -201,14 +204,66 @@ angular.module('starter.controllers', [])
     };
 
 })
+.controller('ForgotPasswordCtrl', function($scope, Authenticate, $state, $ionicLoading, $ionicModal){
+    $scope.showPasswordFields = false;
+    $ionicModal.fromTemplateUrl('custom-modal.html', {
+        scope: $scope,
+        animation: 'slide-in-up'
+      }).then(function(modal) {
+        $scope.modal = modal;
+    });
+    $scope.resetPassword =  function(passInfo){
+         $ionicLoading.show();
+         var isPasswordReset = false;
+         $scope.$on('modal.hidden', function(){
+            isPasswordReset && $state.go('login');
+         });
+        Authenticate.resetPassword(passInfo)
+        .then(function(response){
+            $ionicLoading.hide();
+            $scope.showPasswordFields = false;
+            if( response.data.passwordReset) {
+               $scope.modal.msg = 'Your Password has been changed successfully';
+                $scope.modal.show();
+                $scope.showPasswordFields = false;
+                isPasswordReset = true;
+            } else {
+                $scope.modal.msg = response.statusText+'\n Please try again';
+                $scope.modal.show();
+                $scope.showPasswordFields = false;
+            }
+        }, function(err){
+            $scope.showPasswordFields = false;
+            $ionicLoading.hide();
+            $scope.modal.msg = "Internal server error";
+            $scope.modal.show();
+        });
+    };
+    $scope.submitPin =  function(pinInfo){
+        $ionicLoading.show();
+        Authenticate.verifyPin(pinInfo).then(function(response){
+            $ionicLoading.hide();
+            if( response.data.pinVerified) {
+               $scope.showPasswordFields = true;
+            } else {
+                $scope.modal.msg = "The PIN and Email combination is incorrect";
+                $scope.modal.show();
+            }
+        }, function(err){
+            $ionicLoading.hide();
+            $scope.modal.msg = "Internal server error";
+            $scope.modal.show();
+        })
+    };
+    $scope.hidePasswordFields = function(){
+        $scope.showPasswordFields = false;
+    };
+})
 .controller('MembershipCtrl', function($scope, $timeout, $stateParams) {
-
-
     $scope.open = function() {
         cordova.InAppBrowser.open('http://shop.mahamandalchicago.org/main.sc' , '_blank');
     };
 })
-
 .controller('SignUpCtrl', function($scope, $timeout, $stateParams, $ionicModal , $ionicLoading, $state , SignUp) {
 
      $ionicModal.fromTemplateUrl('custom-modal.html', {
@@ -262,14 +317,8 @@ angular.module('starter.controllers', [])
         },function(error){
             $ionicLoading.hide();
         });
-
-
-
 })
-
-
 .controller('EventdetailsCtrl', function($scope, $stateParams,  $timeout, $ionicLoading, Events) {
-
     $ionicLoading.show();
     Events.get($stateParams.id).then(function(response){
         var event = $scope.event = response.data;
@@ -313,28 +362,14 @@ angular.module('starter.controllers', [])
 
 
 })
-
-.controller('NotificationsCtrl', function($scope, $stateParams, $timeout ) {
-
-})
-
-
 .controller('HomeCtrl', function($scope, $stateParams, $timeout ) {
    if(window.pushRegistered === true){
        $scope.message = window.pushToken;
    }else{
        $scope.message = "Push did not work";
    }
-
-
 })
-
-.controller('MmcCtrl', function($scope, $stateParams, $timeout ) {
-
-})
-
 .controller('AlbumCtrl', function($scope, $stateParams, $state, $timeout, $ionicLoading, Albums ) {
-
     $ionicLoading.show();
     Albums.get().then(function(response){
         var albumYearColl = $scope.albumYearColl = response.data;
@@ -351,15 +386,9 @@ angular.module('starter.controllers', [])
     },function(error){
         $ionicLoading.hide();
     });
-
-
-
 })
-
 .controller('GalleryCtrl', function($scope, $stateParams, $timeout, $ionicLoading, Albums ) {
-
     $ionicLoading.show();
-
     Albums.get($stateParams.year, $stateParams.id).then(function(response){
         $scope.images = response.data.albumImagePaths.map(function(imagePath){
             return {
@@ -372,23 +401,18 @@ angular.module('starter.controllers', [])
         $ionicLoading.hide();
     });
 })
-
 .controller('ContactCtrl', function($scope, $stateParams, $timeout, $ionicLoading, Message) {
-
    $scope.message = {
         subject: "",
         messageBody: "",
         sender: "",
         date : ""
     };
-
    $scope.send = function () {
-
         $scope.date = new Date();
         $scope.message.sender = JSON.parse(localStorage.getItem('user')).email;
         $scope.message.date = $scope.date.toJSON();
         $ionicLoading.show();
-
         Message.send($scope.message).then(function(response){
             $ionicLoading.hide();
             $scope.message = {
@@ -400,35 +424,5 @@ angular.module('starter.controllers', [])
         }, function(response){
             $ionicLoading.hide();
         });
-
    };
-
-
-})
-
-.controller('CartCtrl', function($scope, $stateParams, $timeout) {
-
-   $scope.items = Cart.get();
-
-})
-
-.controller('PresidentCtrl', function($scope, $stateParams, $timeout  ) {
-
-
-
-
-})
-
-.controller('TicketsCtrl', function($scope, $stateParams, $timeout  ) {
-
-
-
-
-})
-
-.controller('CommitteeCtrl', function($scope, $stateParams, $timeout ) {
-
-
-})
-
-;
+});

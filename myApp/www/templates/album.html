@@ -1,17 +1,17 @@
 <ion-view view-title="Album" id="album">
     <ion-content overflow-scroll="true">
         <div ng-repeat = "albumYearInfo in albumYearColl">
-            <button class="button button-block button-purple icon-right "
-                    ng-class="{'ion-chevron-right' : yearsOpen[albumYearInfo.yearNumber] , 'ion-chevron-down' : !yearsOpen[albumYearInfo.yearNumber]}"
+            <button data-button-for = "album" class="button button-block button-purple icon-right "
+                    ng-class="{'ion-chevron-up' : yearsOpen[albumYearInfo.yearNumber] , 'ion-chevron-down' : !yearsOpen[albumYearInfo.yearNumber]}"
                      ng-click="closeYear(albumYearInfo.yearNumber)">{{albumYearInfo.yearNumber}}</button>
             <div class="list" ng-if="yearsOpen[albumYearInfo.yearNumber]">
-                <div ng-repeat="album in albumYearInfo.albumsList" class="card card-gallery item item-text-wrap" ui-sref="app.gallery({id:album, year : albumYearInfo.yearNumber})">
+                <div ng-repeat="album in albumYearInfo.albumsList" class="card card-gallery item item-text-wrap" ui-sref="app.gallery({id:album.name, year : albumYearInfo.yearNumber})">
                     
                         <div class="ink">
-                            <img class="full-image" src="img/banner.jpg">
+                            <img class="full-image" ng-src="{{album.thumbnailPath}}">
                         </div>
                         <div class="item ">
-                            <span>{{album}}</span>
+                            <span>{{album.name}}</span>
                         </div>
                    
                 </div>

@@ -1,6 +1,7 @@
 var pushRegistered = false;
 var pushToken = null;
 var envURL = 'http://mahamandalchicagomobile.org/mmc/';
+// var envURL = 'http://localhost:8081/';
 // Ionic Starter App
 
 // angular.module is a global place for creating, registering and retrieving Angular modules
@@ -12,7 +13,9 @@ angular.module('starter', ['ionic.cloud','ionic', 'ui.router' , 'starter.control
     var URLConfig = {
         authentication : {
             login : envURL+'login/',
-            signUp : envURL+'members/signup/'
+            signUp : envURL+'members/signup/',
+            verifyPin: envURL + 'members/verify-pin',
+            resetPassword: envURL + 'members/reset-password'         
         },
         events : {
             getEvent : envURL + 'events/get?eventId=',
@@ -101,7 +104,11 @@ angular.module('starter', ['ionic.cloud','ionic', 'ui.router' , 'starter.control
         templateUrl: 'templates/sign-up.html',
         controller: 'SignUpCtrl'
     })
-
+    .state('forgot-password',{
+        url : '/forgot-password',
+        templateUrl : 'templates/forgot-password.html',
+        controller : 'ForgotPasswordCtrl'
+    })
     .state('app', {
         url: '/app',
         abstract: true,
@@ -123,8 +130,8 @@ angular.module('starter', ['ionic.cloud','ionic', 'ui.router' , 'starter.control
         url: '/mmc',
         views: {
             'menuContent': {
-                templateUrl: 'templates/mmc.html',
-                controller: 'MmcCtrl'
+                templateUrl: 'templates/mmc.html'
+                
             }
         }
     })
@@ -133,8 +140,8 @@ angular.module('starter', ['ionic.cloud','ionic', 'ui.router' , 'starter.control
         url: '/president',
         views: {
             'menuContent': {
-                templateUrl: 'templates/president.html',
-                controller: 'PresidentCtrl'
+                templateUrl: 'templates/president.html'
+                
             }
         }
     })
@@ -143,8 +150,7 @@ angular.module('starter', ['ionic.cloud','ionic', 'ui.router' , 'starter.control
         url: '/committee',
         views: {
             'menuContent': {
-                templateUrl: 'templates/committee.html',
-                controller: 'CommitteeCtrl'
+                templateUrl: 'templates/committee.html'
             }
         }
     })
