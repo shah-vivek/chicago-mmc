@@ -3,7 +3,8 @@
         <form name="form">
             <div class="form-header">
                 <img class="logo" src="img/ganesha.svg">
-                <h1>महाराष्ट्र मंडळ</h1><h2> शिकागो</h2>
+                <h1>महाराष्ट्र मंडळ</h1>
+                <h2> शिकागो</h2>
             </div>
             <div class="row responsive-md">
                 <div class="col col-50 col-offset-25">
@@ -16,7 +17,7 @@
                             <p ng-show="form.email.$touched && form.email.$error.email" class="item item-input assertive">
                                 Please enter a valid Email Id
                             </p>
-                        
+
                             <label class="item item-input">
                                 <input class="item-input-custom" type="password" placeholder="Password" ng-model="user.password" ng-required="true">
                             </label>
@@ -34,6 +35,13 @@
                             <span>Forgot password ?</span>
                         </div>
                     </div>
+
+                    <p class="h3 options text-center">OR</p>
+                    <button class="button button-block button-login icon-right ion-chevron-right" ng-click="onViewAsGuestClick()">
+                            View as Guest
+                    </button>
+
+
                 </div>
             </div>
         </form>

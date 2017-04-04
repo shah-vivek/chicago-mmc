@@ -5,8 +5,14 @@ angular.module('starter.controllers', [])
 
 .controller('AppCtrl', function($scope, $ionicModal, $ionicPopover, $state, $timeout, $ionicPush ) {
     // Form data for the login modal
-
-    var userInfo = JSON.parse(localStorage.getItem('user'));
+    $scope.showLogOut = !!localStorage.getItem('user');
+    var userInfo = localStorage.getItem('user') && JSON.parse(localStorage.getItem('user'));
+    if(!userInfo){
+        userInfo= {
+           firstName : 'महाराष्ट्र',
+           lastName : 'मंडळ'
+        }
+    }
     $scope.loginData = {};
     $scope.isExpanded = false;
     $scope.hasHeaderFabLeft = false;
@@ -93,6 +99,9 @@ angular.module('starter.controllers', [])
         $state.go('login');
     };
 
+    $scope.signUp = function(){
+        $state.go('login');
+    };
 
      $ionicModal.fromTemplateUrl('custom-modal.html', {
         scope: $scope,
@@ -103,10 +112,6 @@ angular.module('starter.controllers', [])
 
 })
 .controller('SideMenuCtrl', function($scope, $state ) {
-    $scope.logout = function(){
-        localStorage.removeItem("user");
-        $state.go('login');
-    };
     $scope.theme = 'ionic-sidemenu-stable';
     $scope.tree = 
     [
@@ -172,7 +177,9 @@ angular.module('starter.controllers', [])
 
 })
 .controller('LoginCtrl', function($scope, $timeout, $state, $stateParams, $ionicLoading, $ionicModal, Login) {
-
+    $scope.onViewAsGuestClick = function(){
+        $state.go('app.home');
+    };
     $ionicModal.fromTemplateUrl('custom-modal.html', {
         scope: $scope,
         animation: 'slide-in-up'
