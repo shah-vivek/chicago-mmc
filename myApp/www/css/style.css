@@ -43,3 +43,8 @@
 h2.side-menu-header{
     min-height: 25px;
 }
+
+.no-margin-top{
+    margin-top: 0 !important;
+
+}
