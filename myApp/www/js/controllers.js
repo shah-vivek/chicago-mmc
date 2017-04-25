@@ -364,7 +364,7 @@ angular.module('starter.controllers', [])
 
 
         $scope.open = function() {
-            cordova.InAppBrowser.open('https://www.tugoz.com/mmc/' , '_blank');
+            cordova.InAppBrowser.open('http://www.shop.mahamandalchicago.org/Pt-Ram-Deshpande-Concert_c95.htm' , '_blank');
         };
 
 
