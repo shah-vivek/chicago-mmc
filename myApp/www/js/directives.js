@@ -187,10 +187,12 @@ angular.module('mmc.directives', [])
         link: function(scope, elm, attr) {
             // every time you click on the link
             elm.on('click', function($event) {
-                if($event.target.tagName === 'A'){
+                var $targetElem = angular.element($event.target);
+                var href = $targetElem.attr("href");
+                if($event.target.tagName === 'A' && href.indexOf("#")!== 0){
                     $event.preventDefault();
 
-                    cordova.InAppBrowser.open(angular.element($event.target).attr("href") , "_blank");
+                    cordova.InAppBrowser.open(href , "_blank");
                     return false
                 }
             })
