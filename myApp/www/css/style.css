@@ -48,3 +48,19 @@ h2.side-menu-header{
     margin-top: 0 !important;
 
 }
+
+.hide{
+    display: none !important;
+}
+
+.home-page-event-content{
+    margin-top: 20px;
+}
+
+.home-page-event-image-only{
+
+}
+
+.home-page-event-content-only{
+    
+}

@@ -66,4 +66,12 @@ angular.module('mmc.services', [])
 	this.resetPassword = function(passInfo){
 		return $http.post(URLConfig.authentication.resetPassword, passInfo);
 	};
+})
+.service('HomePageService', function($http, URLConfig){
+	this.getHomePageInfo = function(){
+		return $http.get(URLConfig.homePage.getHomePageInfo);
+	}
+	
 });
+
+

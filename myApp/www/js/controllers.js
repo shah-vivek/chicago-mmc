@@ -342,8 +342,8 @@ angular.module('starter.controllers', [])
               	}
               return info;
         };
-        $scope.startDateInfo = getTimeInfo(event.eventStart);
-        $scope.endDateInfo = getTimeInfo(event.eventEnd);
+        $scope.startDateInfo = (event.eventStart=== null && "-") || getTimeInfo(event.eventStart);
+        $scope.endDateInfo = (event.eventEnd=== null && "-") || getTimeInfo(event.eventEnd);
         $ionicLoading.hide();
 
     },function(error){
@@ -363,18 +363,17 @@ angular.module('starter.controllers', [])
     var options = {timeout: 10000, enableHighAccuracy: true};
 
 
-        $scope.open = function() {
-            cordova.InAppBrowser.open('http://www.shop.mahamandalchicago.org/Pt-Ram-Deshpande-Concert_c95.htm' , '_blank');
+        $scope.open = function(eventTicketsUrl) {
+            cordova.InAppBrowser.open(eventTicketsUrl , '_blank');
         };
 
 
 })
-.controller('HomeCtrl', function($scope, $stateParams, $timeout ) {
-   if(window.pushRegistered === true){
-       $scope.message = window.pushToken;
-   }else{
-       $scope.message = "Push did not work";
-   }
+.controller('HomeCtrl', function($scope, $stateParams, $timeout, HomePageService ) {
+  HomePageService.getHomePageInfo().then(function(response){
+        $scope.homePageEventInfos = response.data;
+   });
+    
 })
 .controller('AlbumCtrl', function($scope, $stateParams, $state, $timeout, $ionicLoading, Albums ) {
     $ionicLoading.show();

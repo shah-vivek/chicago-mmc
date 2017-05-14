@@ -1,23 +1,10 @@
 <ion-view view-title="Home" id="home">
 	<ion-content class="home-page">
 		
-		<div class="card" style="padding:10px;">
-			<p>
-				<a href="https://www.shop.mahamandalchicago.org/Pt-Ram-Deshpande-Concert_c95.htm"><img class="aligncenter wp-image-6755 size-full" src="http://www.mahamandalchicago.org/wp-content/uploads/2017/04/Pt-Ram-Deshpande-Concert-final.png"
-					 alt="Pt Ram Deshpande Concert final" width="465" height="599"></a>
-			</p>
-			<p style="text-align: center;">&nbsp;<span style="color: #212121;">Upcoming event – Pt. Ram Deshpande Musical concert </span></p>
-			<p style="text-align: center;">Date: 21<sup>st</sup> May 2017</p>
-			<p style="text-align: center;">Time: 04:00PM to 06:30PM</p>
-			<p style="text-align: center;">Venue: Sant Nirankari Satsang Bhavan Warrenville<br> Address: 1S750 IL-59, West Chicago, IL 60185</p>
-			<p style="text-align: center;">Cost: $20 per person</p>
-			<p>&nbsp;</p>
-			<div style="color: #212121; text-align: center;"></div>
-			<div style="text-align: center;" align="center">
-				<p>&nbsp;</p>
-				<p>&nbsp;</p>
-				<p>&nbsp;</p>
+		<div ng-repeat="eventInfo in homePageEventInfos" class="card" style="padding:10px;">
+			<img  ng-class='{hide: !eventInfo.imageUrl,"home-page-event-image-only": eventInfo.content}' ng-src='{{eventInfo.imageUrl}}'/>
+			<p ng-class='{hide: !eventInfo.content, "home-page-event-content-only": !eventInfo.imageUrl }' class="home-page-event-content" set-inner-html="{{eventInfo.content}}">
+		</div>
 
-			</div>
 	</ion-content>
 </ion-view>

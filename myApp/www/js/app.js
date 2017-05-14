@@ -1,7 +1,7 @@
 var pushRegistered = false;
 var pushToken = null;
-var envURL = 'http://mahamandalchicagomobile.org/mmc/';
-// var envURL = 'http://localhost:8081/';
+var envURL = 'http://mahamandalchicagomobile.org/mmc_ver_2/';
+//var envURL = 'http://localhost:8082/';
 // Ionic Starter App
 
 // angular.module is a global place for creating, registering and retrieving Angular modules
@@ -27,6 +27,9 @@ angular.module('starter', ['ionic.cloud','ionic', 'ui.router' , 'starter.control
         },
         messages : {
             sendMessage : envURL + 'message/send/'
+        },
+        homePage : {
+            getHomePageInfo : envURL + 'home_page/list'
         }
     };
 

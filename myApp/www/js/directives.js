@@ -168,6 +168,32 @@ angular.module('mmc.directives', [])
                 });
             }
         };
-    });
+    })
+    .directive("setInnerHtml", function() {
+        return {
+            restrict: 'A',
+            scope: {
+                setInnerHtml: "@"
+            },
+            link: function(scope, element, attributes, ngModel) {
+                
+                element.html(scope.setInnerHtml);
+            }
+        };
+    })
+    .directive('body', function() {
+    return {
+        restrict: 'E', // only Elements (<a>),
+        link: function(scope, elm, attr) {
+            // every time you click on the link
+            elm.on('click', function($event) {
+                if($event.target.tagName === 'A'){
+                    $event.preventDefault();
 
-;
+                    cordova.InAppBrowser.open(angular.element($event.target).attr("href") , "_blank");
+                    return false
+                }
+            })
+        }
+    }
+});
