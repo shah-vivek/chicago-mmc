@@ -1,5 +1,34 @@
-var pushRegistered = false;
-var pushToken = null;
+var initPushNotification = function(){
+    var push = PushNotification.init({
+        
+        ios: {
+            alert: "true",
+            badge: "true",
+            sound: "true"
+        },
+        windows: {}
+    });
+    
+
+    push.on('registration', function(data) {
+        // data.registrationId
+    });
+
+    push.on('notification', function(data) {
+        // data.message,
+        // data.title,
+        // data.count,
+        // data.sound,
+        // data.image,
+        // data.additionalData
+        console.log("Notification received ", data);
+    });
+
+    push.on('error', function(e) {
+        // e.message
+        console.log("Registration complete ", e);
+    });
+};
 var envURL = 'http://mahamandalchicagomobile.org/mmc_ver_2/';
 //var envURL = 'http://localhost:8082/';
 // Ionic Starter App
@@ -36,7 +65,7 @@ angular.module('starter', ['ionic.cloud','ionic', 'ui.router' , 'starter.control
 
     return URLConfig;
 })
-.run(function($ionicPlatform , $state, $rootScope, Login, $ionicPush) {
+.run(function($ionicPlatform , $state, $rootScope, Login) {
     $ionicPlatform.ready(function() {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
@@ -59,33 +88,11 @@ angular.module('starter', ['ionic.cloud','ionic', 'ui.router' , 'starter.control
                 
             });
         }
-        $ionicPush.register().then(function(t) {
-            return $ionicPush.saveToken(t);
-        }).then(function(t) {
 
-            window.pushRegistered = true;
-            window.pushToken = t.token;
-        })
+        //init push notification
+        initPushNotification();
+        
     });
-})
-.config(function($ionicCloudProvider) {
-  $ionicCloudProvider.init({
-    "core": {
-      "app_id": "25b76a82"
-    },
-    "push": {
-      "sender_id": "1052985078162",
-      "pluginConfig": {
-        "ios": {
-          "badge": true,
-          "sound": true
-        },
-        "android": {
-          "iconColor": "#343434"
-        }
-      }
-    }
-  });
 })
 .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 
