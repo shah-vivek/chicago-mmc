@@ -1,33 +1,12 @@
 var initPushNotification = function(){
-    var push = PushNotification.init({
-        
-        ios: {
-            alert: "true",
-            badge: "true",
-            sound: "true"
-        },
-        windows: {}
-    });
+    var notificationOpenedCallback = function(jsonData) {
+        console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
+    };
     
-
-    push.on('registration', function(data) {
-        // data.registrationId
-    });
-
-    push.on('notification', function(data) {
-        // data.message,
-        // data.title,
-        // data.count,
-        // data.sound,
-        // data.image,
-        // data.additionalData
-        console.log("Notification received ", data);
-    });
-
-    push.on('error', function(e) {
-        // e.message
-        console.log("Registration complete ", e);
-    });
+    window.plugins.OneSignal
+    .startInit("eff6e384-322d-4f30-bdef-da05e359b198")
+    .handleNotificationOpened(notificationOpenedCallback)
+    .endInit();
 };
 var envURL = 'http://mahamandalchicagomobile.org/mmc_ver_2/';
 //var envURL = 'http://localhost:8082/';
