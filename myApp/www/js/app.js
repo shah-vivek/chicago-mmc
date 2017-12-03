@@ -38,6 +38,15 @@ angular.module('starter', ['ionic.cloud','ionic', 'ui.router' , 'starter.control
         },
         homePage : {
             getHomePageInfo : envURL + 'home_page/list'
+        },
+        presidentCorner : {
+            get : envURL + 'presidentCorner/get'
+        },
+        membership : {
+            get : envURL + 'membership/list'
+        },
+        aboutMMC : {
+            get : envURL + 'mmc/get'
         }
     };
 
@@ -119,7 +128,8 @@ angular.module('starter', ['ionic.cloud','ionic', 'ui.router' , 'starter.control
         url: '/mmc',
         views: {
             'menuContent': {
-                templateUrl: 'templates/mmc.html'
+                templateUrl: 'templates/mmc.html',
+                controller: 'MMCCtrl'
                 
             }
         }
@@ -129,7 +139,8 @@ angular.module('starter', ['ionic.cloud','ionic', 'ui.router' , 'starter.control
         url: '/president',
         views: {
             'menuContent': {
-                templateUrl: 'templates/president.html'
+                templateUrl: 'templates/president.html',
+                controller: 'PresidentCtrl'
                 
             }
         }
