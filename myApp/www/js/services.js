@@ -72,6 +72,21 @@ angular.module('mmc.services', [])
 		return $http.get(URLConfig.homePage.getHomePageInfo);
 	}
 	
+})
+.service('PresidentCornerService', function($http, URLConfig){
+	this.get = function(){
+		return $http.get(URLConfig.presidentCorner.get);
+	}
+})
+.service('MembershipService', function($http, URLConfig){
+	this.get = function(){
+		return $http.get(URLConfig.membership.get);
+	}
+})
+.service('AboutMMCService', function($http, URLConfig){
+	this.get = function(){
+		return $http.get(URLConfig.aboutMMC.get);
+	}
 });
 
 
