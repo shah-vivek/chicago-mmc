@@ -266,7 +266,14 @@ angular.module('starter.controllers', [])
         $scope.showPasswordFields = false;
     };
 })
-.controller('MembershipCtrl', function($scope, $timeout, $stateParams) {
+.controller('MembershipCtrl', function($scope, $timeout, $stateParams, MembershipService) {
+    $ionicLoading.show();
+    MembershipService.get().then(function(response){
+        $scope.membership = response.data;
+        $ionicLoading.hide();
+    },function(error){
+        $ionicLoading.hide();
+    });
     $scope.open = function() {
         cordova.InAppBrowser.open('http://shop.mahamandalchicago.org/main.sc' , '_blank');
     };
@@ -431,4 +438,24 @@ angular.module('starter.controllers', [])
             $ionicLoading.hide();
         });
    };
+})
+.controller('PresidentCtrl', function($scope, $ionicLoading, PresidentCornerService){
+
+    $ionicLoading.show();
+    PresidentCornerService.get().then(function(response){
+        $scope.content = response.data.content;
+        $ionicLoading.hide();
+    },function(error){
+        $ionicLoading.hide();
+    });
+})
+.controller('MMCCtrl', function($scope, $ionicLoading, AboutMMCService){
+
+    $ionicLoading.show();
+    AboutMMCService.get().then(function(response){
+        $scope.content = response.data.content;
+        $ionicLoading.hide();
+    },function(error){
+        $ionicLoading.hide();
+    });
 });
