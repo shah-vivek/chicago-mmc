@@ -1,55 +1,16 @@
 <ion-view view-title='Membership'>
   <ion-content scroll="true" class="main-content" id="membership">
-    <div class="card">
+    
+    <div class="card" ng-repeat="type in membership">
       <div class="card-1">
         <div class="card-1-container">
         </div>
       </div>
       <div class="card-2">
         <div class="card-2-container">
-          <h2 class="event-title">2017 MMC Family Membership ($35)</h2>
-          <p>MMC Family Membership for Calendar Year 2017.
-            <br> 1st January, 2017 to 31st December, 2017.</p>
-          <p><i>Cost : </i> $35.00</p>
-        </div>
-      </div>
-      <div class="col text-center">
-        <button class="button button-block button-purple icon-right ion-chevron-right" ng-click="open()">
-                                Buy
-                            </button>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-1">
-        <div class="card-1-container">
-        </div>
-      </div>
-      <div class="card-2">
-        <div class="card-2-container">
-          <h2 class="event-title">2017 MMC Single Membership ($15)</h2>
-          <p>MMC Family Membership for Calendar Year 2017.
-            <br> 1st January, 2017 to 31st December, 2017.
-          </p>
-          <p><i>Cost : </i> $15.00</p>
-        </div>
-      </div>
-      <div class="col text-center">
-        <button class="button button-block button-purple icon-right ion-chevron-right" ng-click="open()">
-                                Buy
-                            </button>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-1">
-        <div class="card-1-container">
-        </div>
-      </div>
-      <div class="card-2">
-        <div class="card-2-container">
-          <h2 class="event-title">MMC Lifelong Family Membership ($350)</h2>
-          <p>Enjoy all the benefits of a MMC Family Membership without having to buy a yearly membership ever again.</p>
-          <p><i>Cost : </i> $350.00</p>
+          <h2 class="event-title">{{type.name}}</h2>
+          <p>{{type.description}}</p>
+          <p><i>Cost : </i> ${{typr.cost}}</p>
         </div>
       </div>
       <div class="col text-center">
