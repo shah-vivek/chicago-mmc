@@ -8,7 +8,7 @@ var initPushNotification = function(){
     .handleNotificationOpened(notificationOpenedCallback)
     .endInit();
 };
-var envURL = 'http://mahamandalchicagomobile.org/mmc_ver_2/';
+var envURL = 'http://mahamandalchicagomobile.org/mmc_ver_3/';
 //var envURL = 'http://localhost:8082/';
 // Ionic Starter App
 
@@ -41,6 +41,9 @@ angular.module('starter', ['ionic.cloud','ionic', 'ui.router' , 'starter.control
         },
         presidentCorner : {
             get : envURL + 'presidentCorner/get'
+        },
+        executiveCommitee : {
+            get : envURL + 'executiveCommitee/get'
         },
         membership : {
             get : envURL + 'membership/list'
@@ -150,7 +153,8 @@ angular.module('starter', ['ionic.cloud','ionic', 'ui.router' , 'starter.control
         url: '/committee',
         views: {
             'menuContent': {
-                templateUrl: 'templates/committee.html'
+                templateUrl: 'templates/committee.html',
+                controller: 'ExecutiveCommiteeCtrl'
             }
         }
     })

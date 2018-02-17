@@ -189,7 +189,7 @@ angular.module('mmc.directives', [])
             elm.on('click', function($event) {
                 var $targetElem = angular.element($event.target);
                 var href = $targetElem.attr("href");
-                if($event.target.tagName === 'A' && href.indexOf("#")!== 0){
+                if($event.target.tagName === 'A' && href && href.indexOf("#")!== 0){
                     $event.preventDefault();
 
                     cordova.InAppBrowser.open(href , "_blank");

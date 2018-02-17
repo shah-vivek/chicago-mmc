@@ -78,6 +78,11 @@ angular.module('mmc.services', [])
 		return $http.get(URLConfig.presidentCorner.get);
 	}
 })
+.service('ExecutiveCommiteeService', function($http, URLConfig){
+	this.get = function(){
+		return $http.get(URLConfig.executiveCommitee.get);
+	}
+})
 .service('MembershipService', function($http, URLConfig){
 	this.get = function(){
 		return $http.get(URLConfig.membership.get);

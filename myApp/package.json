@@ -4,7 +4,7 @@
   "description": "MMC",
   "dependencies": {
     "@ionic/cloud": "^0.16.0",
-    "cordova-android": "^6.2.3",
+    "cordova-android": "^6.3.0",
     "cordova-custom-config": "^3.0.14",
     "cordova-ios": "^4.4.0",
     "cordova-plugin-console": "^1.0.7",
@@ -64,8 +64,8 @@
       "onesignal-cordova-plugin": {}
     },
     "platforms": [
-      "android",
-      "ios"
+      "ios",
+      "android"
     ]
   }
 }

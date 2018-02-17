@@ -266,7 +266,7 @@ angular.module('starter.controllers', [])
         $scope.showPasswordFields = false;
     };
 })
-.controller('MembershipCtrl', function($scope, $timeout, $stateParams, MembershipService) {
+.controller('MembershipCtrl', function($scope, $timeout, $stateParams, MembershipService, $ionicLoading) {
     $ionicLoading.show();
     MembershipService.get().then(function(response){
         $scope.membership = response.data;
@@ -458,4 +458,14 @@ angular.module('starter.controllers', [])
     },function(error){
         $ionicLoading.hide();
     });
-});
+})
+.controller('ExecutiveCommiteeCtrl', function($scope, $ionicLoading, ExecutiveCommiteeService){
+
+    $ionicLoading.show();
+    ExecutiveCommiteeService.get().then(function(response){
+        $scope.content = response.data.content;
+        $ionicLoading.hide();
+    },function(error){
+        $ionicLoading.hide();
+    });
+})
